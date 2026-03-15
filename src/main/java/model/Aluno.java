@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 /**
  *
@@ -21,15 +20,13 @@ public class Aluno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
-    private String sobrenome;
     private String matricula;
 
     public Aluno() {
     }
 
-    public Aluno(String nome, String sobrenome, String matricula) {
+    public Aluno(String nome, String matricula) {
         this.nome = nome;
-        this.sobrenome = sobrenome;
         this.matricula = matricula;
     }
 
@@ -47,14 +44,6 @@ public class Aluno {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
     }
 
     public String getMatricula() {

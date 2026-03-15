@@ -1,12 +1,10 @@
 model\dao\AlunoDaoJpa.class
 model\Turma.class
-controller\CadastrarAluno.class
-controller\ExcluirAluno.class
 model\Disciplina.class
+controller\AlunoController.class
 model\dao\ConnFactory.class
 model\Professor.class
 model\dao\CursoDaoJpa.class
-view\Principal.class
 model\dao\ProfessorDaoJpa.class
 model\dao\DaoFactory.class
 start\trabalho_poo2_web\JakartaRestConfiguration.class

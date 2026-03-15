@@ -21,7 +21,6 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
-    private String sobrenome;
     private String matricula;
 
     public Professor() {
@@ -29,7 +28,6 @@ public class Professor {
 
     public Professor(String nome, String sobrenome, String matricula) {
         this.nome = nome;
-        this.sobrenome = sobrenome;
         this.matricula = matricula;
     }
 
@@ -47,14 +45,6 @@ public class Professor {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
     }
 
     public String getMatricula() {
