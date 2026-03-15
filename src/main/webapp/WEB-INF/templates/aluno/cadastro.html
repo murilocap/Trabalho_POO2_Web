@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Aluno | Acadêmico</title>
+
+    <link rel="stylesheet" href="../../../style/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <span>
+            <p class="logo">acadêmico</p>
+        </span>
+
+        <nav>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="#">
+                        <span class="material-symbols-outlined">school</span>
+                        Cursos
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">
+                        <span class="material-symbols-outlined">groups</span>
+                        Turmas
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">
+                        <span class="material-symbols-outlined">menu_book</span>
+                        Disciplinas
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">
+                        <span class="material-symbols-outlined">person_apron</span>
+                        Professores
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="#">
+                        <span class="material-symbols-outlined">person_edit</span>
+                        Alunos
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <span class="iff-logo">
+            <img src="../../../images/logo-iff.png" alt="Logo Instituto Federal Fluminense">
+        </span>
+    </header>
+
+    <main>
+        <div>
+            <h2 class="page-title">Cadastrar Aluno</h2>
+        </div>
+        <form action="#" method="post" class="register">
+            <fieldset>
+                <label for="matricula">
+                    <span class="material-symbols-outlined">id_card</span>
+                    <span>Matrícula</span>
+                </label>
+                <div class="input">
+                    <input type="text" name="matricula" id="matricula">
+                </div>
+            </fieldset>
+            <fieldset>
+                <label for="nome">
+                    <span class="material-symbols-outlined">person</span>
+                    <span>Nome</span>
+                </label>
+                <div class="input">
+                    <input type="text" name="nome" id="nome">
+                </div>
+            </fieldset>
+            <fieldset>
+                <button class="action-button" type="submit">
+                    <span class="material-symbols-outlined">add</span>
+                    Cadastrar
+                </button>
+                <button class="cancel-button" type="submit">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                    Cancelar
+                </button>
+            </fieldset>
+        </form>
+    </main>
+
+</body>
+</html>
