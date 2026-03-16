@@ -1,14 +1,7 @@
-<%-- 
-    Document   : cadastro
-    Created on : 15 de mar. de 2026, 13:03:15
-    Author     : isaac
---%>
-
 <%@page import="java.util.List"%>
 <%@page import="model.Professor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html lang="pt-br">
 <%
     List<Professor> professores = (List<Professor>) request.getAttribute("professores");
@@ -16,7 +9,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cadastrar Aluno | Acadêmico</title>
+        <title>Cadastrar Disciplina | Acadêmico</title>
 
         <link rel="stylesheet" href="/Trabalho_POO2_Web/style/global.css">
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
@@ -92,7 +85,7 @@
                 </fieldset>
                 <fieldset>
                     <label for="nome">
-                        <span class="material-symbols-outlined">person</span>
+                        <span class="material-symbols-outlined">menu_book</span>
                         <span>Nome da Disciplina</span>
                     </label>
                     <div class="input">
@@ -101,13 +94,13 @@
                 </fieldset>
                 <fieldset>
                     <button class="action-button" type="submit">
-                        <span class="material-symbols-outlined">add</span>
-                        Cadastrar
+                        <span class="material-symbols-outlined">check_small</span>
+                        Salvar
                     </button>
-                    <button class="cancel-button" type="submit">
+                    <a class="cancel-button" href="/Trabalho_POO2_Web/templates/disciplina/listagem.jsp">
                         <span class="material-symbols-outlined">chevron_left</span>
                         Cancelar
-                    </button>
+                    </a>
                 </fieldset>
             </form>
         </main>

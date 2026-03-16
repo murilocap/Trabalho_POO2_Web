@@ -69,28 +69,44 @@
                 Cadastrar
             </a>
         </div>
-        <ul class="main-list">
-
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Matrícula</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
                 <% for (Professor p : professores) {%>
-
-                <li>
-                    <a href="ProfessorController?acao=edicao&id=<%= p.getId()%>" class="list-item">
-
-                        <!-- ICON -->
-                        <div>
-                            <span class="material-symbols-outlined">person_edit</span>
-                        </div>
-
-                        <!-- NAME -->
-                        <div>
-                            <span><%= p.getNome()%> | <%= p.getMatricula()%></span>
-                        </div>
-
-                    </a>
-                </li>
-
+                    <tr>
+                        <td>
+                            <span>
+                                <span class="material-symbols-outlined">person_apron</span>
+                                <%= p.getNome()%>
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                <%= p.getMatricula()%>
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                <a href="ProfessorController?acao=edicao&id=<%= p.getId()%>" class="default-button">
+                                    <span class="material-symbols-outlined">edit</span>
+                                    Editar
+                                </a>
+                                <a href="ProfessorController?acao=exclusao&id=<%= p.getId()%>" class="delete-button">
+                                    <span class="material-symbols-outlined">delete</span>
+                                    Excluir
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
                 <% }%>
-            </ul>
+            </tbody>
+        </table>
     </main>
 
 </body>

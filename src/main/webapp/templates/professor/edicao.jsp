@@ -1,11 +1,9 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Professor | Acadêmico</title>
+    <title>Editar Professor | Acadêmico</title>
 
     <link rel="stylesheet" href="/Trabalho_POO2_Web/style/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
@@ -36,13 +34,13 @@
                         Disciplinas
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item active">
                     <a href="/Trabalho_POO2_Web/ProfessorController?acao=listagem">
                         <span class="material-symbols-outlined">person_apron</span>
                         Professores
                     </a>
                 </li>
-                <li class="menu-item active">
+                <li class="menu-item">
                     <a href="/Trabalho_POO2_Web/AlunoController?acao=listagem">
                         <span class="material-symbols-outlined">person_edit</span>
                         Alunos
@@ -58,38 +56,58 @@
 
     <main>
         <div>
-            <h2 class="page-title">Cadastrar Professor</h2>
+            <h2 class="page-title">Editar Professor</h2>
         </div>
+
         <form action="/Trabalho_POO2_Web/ProfessorController" method="post" class="register">
-            <input type="hidden" name="acao" value="inclusao">
+            
+            <input type="hidden" name="acao" value="edicao">
+
             <fieldset>
                 <label for="matricula">
                     <span class="material-symbols-outlined">id_card</span>
                     <span>Matrícula</span>
                 </label>
+
                 <div class="input">
-                    <input type="text" name="matricula" id="matricula">
+                    <input 
+                        type="text" 
+                        name="matricula" 
+                        id="matricula"
+                        value="${professor.matricula}"
+                        readonly
+                    >
                 </div>
             </fieldset>
+
             <fieldset>
                 <label for="nome">
                     <span class="material-symbols-outlined">person</span>
                     <span>Nome</span>
                 </label>
+
                 <div class="input">
-                    <input type="text" name="nome" id="nome">
+                    <input 
+                        type="text" 
+                        name="nome" 
+                        id="nome"
+                        value="${professor.nome}"
+                    >
                 </div>
             </fieldset>
+
             <fieldset>
                 <button class="action-button" type="submit">
                     <span class="material-symbols-outlined">check_small</span>
                     Salvar
                 </button>
+
                 <a class="cancel-button" href="/Trabalho_POO2_Web/templates/professor/listagem.jsp">
                     <span class="material-symbols-outlined">chevron_left</span>
                     Cancelar
                 </a>
             </fieldset>
+
         </form>
     </main>
 

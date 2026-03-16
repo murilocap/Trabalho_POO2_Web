@@ -1,11 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Professor | Acadêmico</title>
+    <title>Editar Aluno | Acadêmico</title>
 
     <link rel="stylesheet" href="/Trabalho_POO2_Web/style/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
@@ -58,17 +57,17 @@
 
     <main>
         <div>
-            <h2 class="page-title">Cadastrar Professor</h2>
+            <h2 class="page-title">Editar Aluno</h2>
         </div>
-        <form action="/Trabalho_POO2_Web/ProfessorController" method="post" class="register">
-            <input type="hidden" name="acao" value="inclusao">
+        <form action="/Trabalho_POO2_Web/AlunoController" method="post" class="register">
+            <input type="hidden" name="acao" value="edicao">
             <fieldset>
                 <label for="matricula">
                     <span class="material-symbols-outlined">id_card</span>
                     <span>Matrícula</span>
                 </label>
                 <div class="input">
-                    <input type="text" name="matricula" id="matricula">
+                    <input type="text" name="matricula" id="matricula" value="${aluno.matricula}">
                 </div>
             </fieldset>
             <fieldset>
@@ -77,7 +76,7 @@
                     <span>Nome</span>
                 </label>
                 <div class="input">
-                    <input type="text" name="nome" id="nome">
+                    <input type="text" name="nome" id="nome" value="${aluno.nome}">
                 </div>
             </fieldset>
             <fieldset>
@@ -85,7 +84,7 @@
                     <span class="material-symbols-outlined">check_small</span>
                     Salvar
                 </button>
-                <a class="cancel-button" href="/Trabalho_POO2_Web/templates/professor/listagem.jsp">
+                <a class="cancel-button" href="/Trabalho_POO2_Web/templates/aluno/listagem.jsp">
                     <span class="material-symbols-outlined">chevron_left</span>
                     Cancelar
                 </a>
