@@ -1,13 +1,17 @@
 model\dao\AlunoDaoJpa.class
 model\Turma.class
+controller\TurmaController.class
 model\Disciplina.class
 controller\AlunoController.class
 model\dao\ConnFactory.class
 model\Professor.class
 model\dao\CursoDaoJpa.class
+controller\ProfessorController.class
 model\dao\ProfessorDaoJpa.class
 model\dao\DaoFactory.class
+controller\DisciplinaController.class
 start\trabalho_poo2_web\JakartaRestConfiguration.class
+controller\CursoController.class
 model\Aluno.class
 model\dao\DisciplinaDaoJpa.class
 start\trabalho_poo2_web\resources\JakartaEE11Resource.class

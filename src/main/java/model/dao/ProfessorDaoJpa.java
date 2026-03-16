@@ -54,11 +54,6 @@ public class ProfessorDaoJpa implements InterfaceDao<Professor>{
     }
 
     @Override
-    public Professor pesquisarPorId(int id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public List<Professor> listar() throws Exception {
         List<Professor> listaProfessor = new ArrayList();
         EntityManager em = ConnFactory.getEntityManager();

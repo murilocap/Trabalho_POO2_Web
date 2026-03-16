@@ -53,11 +53,6 @@ public class DisciplinaDaoJpa implements InterfaceDao<Disciplina> {
     }
 
     @Override
-    public Disciplina pesquisarPorId(int id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public List<Disciplina> listar() throws Exception {
         List<Disciplina> listaDisciplinas = new ArrayList();
         EntityManager em = ConnFactory.getEntityManager();

@@ -53,11 +53,6 @@ public class CursoDaoJpa implements InterfaceDao<Curso>{
     }
 
     @Override
-    public Curso pesquisarPorId(int id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public List<Curso> listar() throws Exception {
         List<Curso> listaCursos = new ArrayList();
         EntityManager em = ConnFactory.getEntityManager();

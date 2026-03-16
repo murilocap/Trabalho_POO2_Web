@@ -1,5 +1,10 @@
+<%@page import="model.Professor"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    List<Professor> professores = (List<Professor>) request.getAttribute("professores");
+%>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -19,31 +24,31 @@
         <nav>
             <ul class="menu">
                 <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/curso/listagem.jsp">
+                    <a href="/Trabalho_POO2_Web/CursoController?acao=listagem">
                         <span class="material-symbols-outlined">school</span>
                         Cursos
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/turma/listagem.jsp">
+                    <a href="/Trabalho_POO2_Web/TurmaController?acao=listagem">
                         <span class="material-symbols-outlined">groups</span>
                         Turmas
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/disciplina/listagem.jsp">
+                    <a href="/Trabalho_POO2_Web/DisciplinaController?acao=listagem">
                         <span class="material-symbols-outlined">menu_book</span>
                         Disciplinas
                     </a>
                 </li>
                 <li class="menu-item active">
-                    <a href="/Trabalho_POO2_Web/templates/professor/listagem.jsp">
+                    <a href="/Trabalho_POO2_Web/ProfessorController?acao=listagem">
                         <span class="material-symbols-outlined">person_apron</span>
                         Professores
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/aluno/listagem.jsp">
+                    <a href="/Trabalho_POO2_Web/AlunoController?acao=listagem">
                         <span class="material-symbols-outlined">person_edit</span>
                         Alunos
                     </a>
@@ -59,49 +64,33 @@
     <main>
         <div>
             <h2 class="page-title">Professores</h2>
-            <a href="#" class="action-button">
+            <a href="/Trabalho_POO2_Web/templates/professor/cadastro.jsp" class="action-button">
                 <span class="material-symbols-outlined">add</span>
                 Cadastrar
             </a>
         </div>
         <ul class="main-list">
-            <li>
-                <a href="#" class="list-item">
-                    <!-- ICON -->
-                    <div>
-                        <span class="material-symbols-outlined">person_apron</span>
-                    </div>
-                    <!-- NAME -->
-                    <div>
-                        <span>Nome do Professor</span>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="list-item">
-                    <!-- ICON -->
-                    <div>
-                        <span class="material-symbols-outlined">person_apron</span>
-                    </div>
-                    <!-- NAME -->
-                    <div>
-                        <span>Nome do Professor</span>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="list-item">
-                    <!-- ICON -->
-                    <div>
-                        <span class="material-symbols-outlined">person_apron</span>
-                    </div>
-                    <!-- NAME -->
-                    <div>
-                        <span>Nome do Professor</span>
-                    </div>
-                </a>
-            </li>
-        </ul>
+
+                <% for (Professor p : professores) {%>
+
+                <li>
+                    <a href="ProfessorController?acao=edicao&id=<%= p.getId()%>" class="list-item">
+
+                        <!-- ICON -->
+                        <div>
+                            <span class="material-symbols-outlined">person_edit</span>
+                        </div>
+
+                        <!-- NAME -->
+                        <div>
+                            <span><%= p.getNome()%> | <%= p.getMatricula()%></span>
+                        </div>
+
+                    </a>
+                </li>
+
+                <% }%>
+            </ul>
     </main>
 
 </body>

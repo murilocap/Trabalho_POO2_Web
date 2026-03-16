@@ -52,12 +52,7 @@ public class TurmaDaoJpa implements InterfaceDao<Turma> {
            em.close();
        }
     }
-
-    @Override
-    public Turma pesquisarPorId(int id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    
     @Override
     public List<Turma> listar() throws Exception {
        List<Turma> listaTurmas = new ArrayList();
