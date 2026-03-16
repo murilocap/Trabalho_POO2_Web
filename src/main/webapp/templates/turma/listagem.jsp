@@ -1,4 +1,3 @@
-<%@page import="java.util.Collection"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Turma"%>
 <%@page import="model.Aluno"%>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : cadastro
-    Created on : 15 de mar. de 2026, 13:03:15
-    Author     : isaac
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
