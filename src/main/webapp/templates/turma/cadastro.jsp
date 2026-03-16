@@ -1,13 +1,17 @@
-
+<%@page import="java.util.List"%>
+<%@page import="model.Aluno"%>
+<%@page import="model.Disciplina"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    List<Aluno> alunos = (List<Aluno>) request.getAttribute("alunos");
+    List<Disciplina> disciplinas = (List<Disciplina>) request.getAttribute("disciplinas");
+%>
 <!DOCTYPE html>
-
 <html lang="pt-br">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Aluno | Acadêmico</title>
+    <title>Cadastrar Turma | Acadêmico</title>
 
     <link rel="stylesheet" href="/Trabalho_POO2_Web/style/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
@@ -26,25 +30,29 @@
                         Cursos
                     </a>
                 </li>
-                <li class="menu-item">
+
+                <li class="menu-item active">
                     <a href="/Trabalho_POO2_Web/TurmaController?acao=listagem">
                         <span class="material-symbols-outlined">groups</span>
                         Turmas
                     </a>
                 </li>
+
                 <li class="menu-item">
                     <a href="/Trabalho_POO2_Web/DisciplinaController?acao=listagem">
                         <span class="material-symbols-outlined">menu_book</span>
                         Disciplinas
                     </a>
                 </li>
+
                 <li class="menu-item">
                     <a href="/Trabalho_POO2_Web/ProfessorController?acao=listagem">
                         <span class="material-symbols-outlined">person_apron</span>
                         Professores
                     </a>
                 </li>
-                <li class="menu-item active">
+
+                <li class="menu-item">
                     <a href="/Trabalho_POO2_Web/AlunoController?acao=listagem">
                         <span class="material-symbols-outlined">person_edit</span>
                         Alunos
@@ -59,38 +67,79 @@
     </header>
 
     <main>
+
         <div>
-            <h2 class="page-title">Cadastrar Aluno</h2>
+            <h2 class="page-title">Cadastrar Turma</h2>
         </div>
-        <form action="/Trabalho_POO2_Web/AlunoController" method="post" class="register">
+
+        <form action="/Trabalho_POO2_Web/TurmaController" method="post" class="register">
             <input type="hidden" name="acao" value="inclusao">
+            <!-- CODIGO DA TURMA -->
             <fieldset>
-                <label for="matricula">
-                    <span class="material-symbols-outlined">id_card</span>
-                    <span>Matrícula</span>
+                <label for="cod_turma">
+                    <span class="material-symbols-outlined">groups</span>
+                    <span>Código da Turma</span>
                 </label>
                 <div class="input">
-                    <input type="text" name="matricula" id="matricula">
+                    <input type="text" name="cod_turma" id="cod_turma">
                 </div>
             </fieldset>
+            <!-- DISCIPLINAS -->
             <fieldset>
-                <label for="nome">
-                    <span class="material-symbols-outlined">person</span>
-                    <span>Nome</span>
+                <label>
+                    <span class="material-symbols-outlined">menu_book</span>
+                    <span>Disciplinas</span>
                 </label>
                 <div class="input">
-                    <input type="text" name="nome" id="nome">
+
+                <% for (Disciplina d : disciplinas) { %>
+
+                <label style="display:block">
+
+                <input type="checkbox"
+                    name="disciplinasId"
+                    value="<%= d.getId() %>">
+
+                <%= d.getNome() %> - <%= d.getProfessor().getNome() %>
+
+                </label>
+
+                <% } %>
+
                 </div>
             </fieldset>
+            <!-- ALUNOS -->
+            <fieldset>
+            <label>
+                <span class="material-symbols-outlined">person_edit</span>
+                <span>Alunos</span>
+            </label>
+            <div class="input">
+            <% for (Aluno a : alunos) { %>
+            <label style="display:block">
+            <input type="checkbox"
+                name="alunosId"
+                value="<%= a.getId() %>">
+
+            <%= a.getNome() %> - <%= a.getMatricula() %>
+
+            </label>
+
+            <% } %>
+
+            </div>
+
+            </fieldset>
+            <!-- BOTÕES -->
             <fieldset>
                 <button class="action-button" type="submit">
-                    <span class="material-symbols-outlined">add</span>
-                    Cadastrar
+                    <span class="material-symbols-outlined">check_small</span>
+                    Salvar
                 </button>
-                <button class="cancel-button" type="submit">
+                <a class="cancel-button" href="/Trabalho_POO2_Web/templates/turma/listagem.jsp">
                     <span class="material-symbols-outlined">chevron_left</span>
                     Cancelar
-                </button>
+                </a>
             </fieldset>
         </form>
     </main>

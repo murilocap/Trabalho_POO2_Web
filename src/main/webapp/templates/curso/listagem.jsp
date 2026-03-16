@@ -71,18 +71,32 @@
             </a>
         </div>
         <ul class="main-list">
-            <li>
-                <a href="#" class="list-item">
-                    <!-- ICON -->
-                    <div>
-                        <span class="material-symbols-outlined">school</span>
-                    </div>
-                    <!-- NAME -->
-                    <div>
-                        <span>Nome do Curso</span>
-                    </div>
-                </a>
-            </li>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Curso</th>
+                        <th>Coordenador</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (Curso c : cursos) {%>
+                        <tr>
+                            <td>
+                                <span style="color: <%= c.getCor() %>;">
+                                    <span class="material-symbols-outlined" style="color: <%= c.getCor() %>;">school</span>
+                                    <%= c.getNome()%>
+                                </span>
+                            </td>
+                            <td>
+                                <span style="color: <%= c.getCor() %>;">
+                                    <span class="material-symbols-outlined" style="color: <%= c.getCor() %>;">school</span>
+                                    <%= c.getNome()%>
+                                </span>
+                            </td>
+                        </tr>
+                    <% }%>
+                </tbody>
+            </table>
         </ul>
     </main>
 
