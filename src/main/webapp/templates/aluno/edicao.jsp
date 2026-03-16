@@ -1,3 +1,4 @@
+<%@page import="model.Aluno"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -60,14 +61,17 @@
             <h2 class="page-title">Editar Aluno</h2>
         </div>
         <form action="/Trabalho_POO2_Web/AlunoController" method="post" class="register">
-            <input type="hidden" name="acao" value="edicao">
+
+            <input type="hidden" name="acao" value="inclusao">
+            <input type="hidden" name="id" value="<%= aluno.getId()%>">
+
             <fieldset>
                 <label for="matricula">
                     <span class="material-symbols-outlined">id_card</span>
                     <span>Matrícula</span>
                 </label>
                 <div class="input">
-                    <input type="text" name="matricula" id="matricula" value="${aluno.matricula}">
+                    <input type="text" name="matricula" id="matricula" value="<%= aluno.getMatricula()%>">
                 </div>
             </fieldset>
             <fieldset>
@@ -76,7 +80,7 @@
                     <span>Nome</span>
                 </label>
                 <div class="input">
-                    <input type="text" name="nome" id="nome" value="${aluno.nome}">
+                    <input type="text" name="nome" id="nome" value="<%= aluno.getNome()%>">
                 </div>
             </fieldset>
             <fieldset>

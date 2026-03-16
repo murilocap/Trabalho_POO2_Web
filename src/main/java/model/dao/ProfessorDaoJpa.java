@@ -41,11 +41,11 @@ public class ProfessorDaoJpa implements InterfaceDao<Professor>{
     }
 
     @Override
-    public void excluir(Professor entidade) throws Exception {
+    public void excluir(int id) throws Exception {
         EntityManager em = ConnFactory.getEntityManager();
        try{
            em.getTransaction().begin();
-           Professor a1 = em.find(Professor.class, entidade.getId());
+           Professor a1 = em.find(Professor.class, id);
            em.remove(a1);
            em.getTransaction().commit();
        } finally{
@@ -69,11 +69,11 @@ public class ProfessorDaoJpa implements InterfaceDao<Professor>{
     
     public Professor pesquisarPorId(int id) throws Exception {
         EntityManager em = ConnFactory.getEntityManager();
-    try {
-        return em.find(Professor.class, id);
-    } catch (Exception e) {
-        throw new Exception("Erro ao buscar professor por ID", e);
+        try {
+            return em.find(Professor.class, id);
+        } catch (Exception e) {
+            throw new Exception("Erro ao buscar professor por ID", e);
+        }
     }
-}
     
 }

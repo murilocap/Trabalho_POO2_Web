@@ -2,15 +2,12 @@
 <%@page import="model.Professor"%>
 <%@page import="model.Disciplina"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-
 <%
     List<Professor> professores = (List<Professor>) request.getAttribute("professores");
     Disciplina disciplina = (Disciplina) request.getAttribute("disciplina");
 %>
-
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +16,6 @@
     <link rel="stylesheet" href="/Trabalho_POO2_Web/style/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
-
 <body>
     <header>
         <span>
@@ -73,7 +69,7 @@
 
         <form action="/Trabalho_POO2_Web/DisciplinaController" method="post" class="register">
 
-            <input type="hidden" name="acao" value="edicao">
+            <input type="hidden" name="acao" value="inclusao">
             <input type="hidden" name="id" value="<%= disciplina.getId()%>">
 
             <fieldset>

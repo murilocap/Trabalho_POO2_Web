@@ -1,50 +1,47 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller;
 
 import jakarta.servlet.RequestDispatcher;
-import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import static java.lang.System.out;
-import java.util.List;
 import model.Aluno;
 import model.dao.AlunoDaoJpa;
 import model.dao.DaoFactory;
 
-/**
- *
- * @author isaac
- */
+import java.io.IOException;
+import java.util.List;
+
 public class AlunoController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws Exception {
         response.setContentType("text/html;charset=UTF-8");
 
         String acao = request.getParameter("acao");
-
+        String idParam = request.getParameter("id");
         String nome = request.getParameter("nome");
         String matricula = request.getParameter("matricula");
+
+        AlunoDaoJpa dao = DaoFactory.novoAlunoDao();
 
         RequestDispatcher rd = null;
 
         switch (acao) {
 
             case "inclusao":
-
                 try {
                     Aluno aluno = new Aluno();
                     aluno.setNome(nome);
                     aluno.setMatricula(matricula);
 
-                    AlunoDaoJpa alunoNovo = DaoFactory.novoAlunoDao();
-                    alunoNovo.incluir(aluno);
+                    if (idParam == null || idParam.isEmpty()) {
+                        dao.incluir(aluno);
+                    } else {
+                        int id = Integer.parseInt(idParam);
+                        aluno.setId(id);
+                        dao.editar(aluno);
+                    }
 
                     response.sendRedirect("AlunoController?acao=listagem");
                     return;
@@ -55,31 +52,29 @@ public class AlunoController extends HttpServlet {
                 break;
 
             case "edicao":
+                Aluno aluno = dao.pesquisarPorId(Integer.parseInt(idParam));
 
-                break;
+                request.setAttribute("aluno", aluno);
+
+                rd = request.getRequestDispatcher("/templates/aluno/cadastro.jsp");
+                rd.forward(request, response);
+
+                return;
 
             case "exclusao":
-                
                 try {
-                    Aluno aluno = new Aluno();
-                    aluno.setNome(nome);
-                    aluno.setMatricula(matricula);
-
-                    AlunoDaoJpa alunoNovo = DaoFactory.novoAlunoDao();
-                    alunoNovo.excluir(aluno);
-
+                    dao.excluir(Integer.parseInt(idParam));
                     response.sendRedirect("AlunoController?acao=listagem");
                     return;
                 } catch (Exception error) {
                     response.sendRedirect("erroDeExcecao.html");
                 }
-                
+
                 break;
 
             case "listagem":
-                AlunoDaoJpa dao = DaoFactory.novoAlunoDao();
                 List<Aluno> lista = null;
-                
+
                 try {
                     lista = dao.listar();
                 } catch (Exception ex) {
@@ -108,7 +103,11 @@ public class AlunoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -122,7 +121,11 @@ public class AlunoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
