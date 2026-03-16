@@ -1,14 +1,7 @@
-<%-- 
-    Document   : cadastro
-    Created on : 15 de mar. de 2026, 13:03:15
-    Author     : isaac
---%>
-
 <%@page import="java.util.List"%>
 <%@page import="model.Professor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html lang="pt-br">
 <%
     List<Professor> professores = (List<Professor>) request.getAttribute("professores");
@@ -101,8 +94,8 @@
                 </fieldset>
                 <fieldset>
                     <button class="action-button" type="submit">
-                        <span class="material-symbols-outlined">add</span>
-                        Cadastrar
+                        <span class="material-symbols-outlined">check_small</span>
+                        Salvar
                     </button>
                     <a class="cancel-button" href="/Trabalho_POO2_Web/templates/disciplina/listagem.jsp">
                         <span class="material-symbols-outlined">chevron_left</span>
