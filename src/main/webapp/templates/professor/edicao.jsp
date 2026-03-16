@@ -1,3 +1,5 @@
+<%@page import="model.Professor"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -61,7 +63,8 @@
 
         <form action="/Trabalho_POO2_Web/ProfessorController" method="post" class="register">
             
-            <input type="hidden" name="acao" value="edicao">
+            <input type="hidden" name="acao" value="inclusao">
+            <input type="hidden" name="id" value="<%= professor.getId()%>">
 
             <fieldset>
                 <label for="matricula">
@@ -74,7 +77,7 @@
                         type="text" 
                         name="matricula" 
                         id="matricula"
-                        value="${professor.matricula}"
+                        value="<%= professor.getMatricula()%>"
                         readonly
                     >
                 </div>
@@ -91,7 +94,7 @@
                         type="text" 
                         name="nome" 
                         id="nome"
-                        value="${professor.nome}"
+                        value="<%= professor.getNome()%>"
                     >
                 </div>
             </fieldset>

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import jakarta.persistence.Entity;
@@ -14,10 +10,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import java.util.Collection;
 
-/**
- *
- * @author isaac
- */
 @Entity
 public class Turma {
 
@@ -87,7 +79,4 @@ public class Turma {
         this.disciplinas = disciplinas;
     }
 
-    
-    
-    
 }

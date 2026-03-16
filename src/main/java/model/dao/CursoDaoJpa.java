@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.dao;
 
 import jakarta.persistence.EntityManager;
@@ -9,10 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Curso;
 
-/**
- *
- * @author isaac
- */
 public class CursoDaoJpa implements InterfaceDao<Curso>{
 
     @Override
@@ -40,11 +32,11 @@ public class CursoDaoJpa implements InterfaceDao<Curso>{
     }
 
     @Override
-    public void excluir(Curso entidade) throws Exception {
+    public void excluir(int id) throws Exception {
         EntityManager em = ConnFactory.getEntityManager();
        try{
            em.getTransaction().begin();
-           Curso c1 = em.find(Curso.class, entidade.getId());
+           Curso c1 = em.find(Curso.class, id);
            em.remove(c1);
            em.getTransaction().commit();
        } finally{
@@ -64,6 +56,15 @@ public class CursoDaoJpa implements InterfaceDao<Curso>{
             em.close();
         }
          return listaCursos;
+    }
+
+    public Curso pesquisarPorId(int id) throws Exception {
+        EntityManager em = ConnFactory.getEntityManager();
+        try {
+            return em.find(Curso.class, id);
+        } catch (Exception e) {
+            throw new Exception("Erro ao buscar curso por ID", e);
+        }
     }
     
 }

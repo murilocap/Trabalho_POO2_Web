@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller;
 
 import jakarta.servlet.RequestDispatcher;
@@ -16,68 +12,93 @@ import model.Professor;
 import model.dao.DaoFactory;
 import model.dao.ProfessorDaoJpa;
 
-/**
- *
- * @author isaac
- */
 public class ProfessorController extends HttpServlet {
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws Exception {
+
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String acao = request.getParameter("acao");
-        
+        String idParam = request.getParameter("id");
         String nome = request.getParameter("nome");
         String matricula = request.getParameter("matricula");
-        
+
+        ProfessorDaoJpa dao = DaoFactory.novoProfessorDao();
+
         RequestDispatcher rd = null;
 
         switch (acao) {
 
             case "inclusao":
-                
                 try {
-                   Professor prof = new Professor();
-                    prof.setNome(nome);
-                    prof.setMatricula(matricula);
 
-                    ProfessorDaoJpa profNovo = DaoFactory.novoProfessorDao();
-                    profNovo.incluir(prof);
+                    Professor professor = new Professor();
+                    professor.setNome(nome);
+                    professor.setMatricula(matricula);
+
+                    if (idParam == null || idParam.isEmpty()) {
+
+                        dao.incluir(professor);
+
+                    } else {
+
+                        professor.setId(Integer.parseInt(idParam));
+                        dao.editar(professor);
+
+                    }
 
                     response.sendRedirect("ProfessorController?acao=listagem");
                     return;
+
                 } catch (Exception error) {
+
                     response.sendRedirect("erroDeExcecao.html");
+
                 }
-                
+
                 break;
 
             case "edicao":
 
-                break;
+                Professor professor = dao.pesquisarPorId(Integer.parseInt(idParam));
+
+                request.setAttribute("professor", professor);
+
+                rd = request.getRequestDispatcher("/templates/professor/cadastro.jsp");
+                rd.forward(request, response);
+
+                return;
 
             case "exclusao":
+
+                try {
+
+                    dao.excluir(Integer.parseInt(idParam));
+
+                    response.sendRedirect("ProfessorController?acao=listagem");
+                    return;
+
+                } catch (Exception error) {
+
+                    response.sendRedirect("erroDeExcecao.html");
+
+                }
 
                 break;
 
             case "listagem":
-                ProfessorDaoJpa dao = DaoFactory.novoProfessorDao();
-                List<Professor> lista = null;
-                
-                try {
-                    lista = dao.listar();
-                } catch (Exception ex) {
-                    System.getLogger(ProfessorController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-                }
+
+                List<Professor> lista = dao.listar();
 
                 request.setAttribute("professores", lista);
 
                 rd = request.getRequestDispatcher("/templates/professor/listagem.jsp");
                 rd.forward(request, response);
+
                 break;
+
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -92,7 +113,11 @@ public class ProfessorController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -106,7 +131,11 @@ public class ProfessorController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
