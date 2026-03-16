@@ -1,7 +1,7 @@
 <%@page import="model.Disciplina"%>
+<%@page import="model.Professor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
-<%@page import="model.Aluno"%>
 
 <!DOCTYPE html>
 <%
@@ -72,28 +72,45 @@
                     Cadastrar
                 </a>
             </div>
-            <ul class="main-list">
 
-                <% for (Disciplina d : disciplinas) {%>
-
-                <li>
-                    <a href="DisciplinaController?acao=edicao&id=<%= d.getId()%>" class="list-item">
-
-                        <!-- ICON -->
-                        <div>
-                            <span class="material-symbols-outlined">person_edit</span>
-                        </div>
-
-                        <!-- NAME -->
-                        <div>
-                            <span><%= d.getProfessor().getNome()%> | <%= d.getNome()%></span>
-                        </div>
-
-                    </a>
-                </li>
-
-                <% }%>
-            </ul>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Professor</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (Disciplina d : disciplinas) {%>
+                        <tr>
+                            <td>
+                                <span>
+                                    <span class="material-symbols-outlined">menu_book</span>
+                                    <%= d.getNome()%>
+                                </span>
+                            </td>
+                            <td>
+                                <span>
+                                    <%= d.getProfessor().getNome()%>
+                                </span>
+                            </td>
+                            <td>
+                                <span>
+                                    <a href="DisciplinaController?acao=edicao&id=<%= d.getId()%>" class="default-button">
+                                        <span class="material-symbols-outlined">edit</span>
+                                        Editar
+                                    </a>
+                                    <a href="DisciplinaController?acao=exclusao&id=<%= d.getId()%>" class="delete-button">
+                                        <span class="material-symbols-outlined">delete</span>
+                                        Excluir
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                    <% }%>
+                </tbody>
+            </table>
         </main>
 
     </body>

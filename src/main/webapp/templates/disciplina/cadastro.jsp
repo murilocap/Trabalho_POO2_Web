@@ -16,7 +16,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cadastrar Aluno | Acadêmico</title>
+        <title>Cadastrar Disciplina | Acadêmico</title>
 
         <link rel="stylesheet" href="/Trabalho_POO2_Web/style/global.css">
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
@@ -92,7 +92,7 @@
                 </fieldset>
                 <fieldset>
                     <label for="nome">
-                        <span class="material-symbols-outlined">person</span>
+                        <span class="material-symbols-outlined">menu_book</span>
                         <span>Nome da Disciplina</span>
                     </label>
                     <div class="input">
@@ -104,10 +104,10 @@
                         <span class="material-symbols-outlined">add</span>
                         Cadastrar
                     </button>
-                    <button class="cancel-button" type="submit">
+                    <a class="cancel-button" href="/Trabalho_POO2_Web/templates/disciplina/listagem.jsp">
                         <span class="material-symbols-outlined">chevron_left</span>
                         Cancelar
-                    </button>
+                    </a>
                 </fieldset>
             </form>
         </main>
