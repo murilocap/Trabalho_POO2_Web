@@ -91,13 +91,13 @@
             </fieldset>
             <fieldset>
                 <button class="action-button" type="submit">
-                    <span class="material-symbols-outlined">add</span>
-                    Cadastrar
+                    <span class="material-symbols-outlined">check_small</span>
+                    Salvar
                 </button>
-                <button class="cancel-button" type="submit">
+                <a class="cancel-button" href="/Trabalho_POO2_Web/templates/aluno/listagem.jsp">
                     <span class="material-symbols-outlined">chevron_left</span>
                     Cancelar
-                </button>
+                </a>
             </fieldset>
         </form>
     </main>

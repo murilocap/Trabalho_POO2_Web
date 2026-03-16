@@ -1,5 +1,16 @@
+<%-- 
+    Document   : listagem
+    Created on : 15 de mar. de 2026, 11:47:52
+    Author     : isaac
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="model.Curso" %>
+<!DOCTYPE html>
+<%
+    List<Curso> cursos = (List<Curso>) request.getAttribute("cursos");
+%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -66,30 +77,6 @@
             </a>
         </div>
         <ul class="main-list">
-            <li>
-                <a href="#" class="list-item">
-                    <!-- ICON -->
-                    <div>
-                        <span class="material-symbols-outlined">school</span>
-                    </div>
-                    <!-- NAME -->
-                    <div>
-                        <span>Nome do Curso</span>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="list-item">
-                    <!-- ICON -->
-                    <div>
-                        <span class="material-symbols-outlined">school</span>
-                    </div>
-                    <!-- NAME -->
-                    <div>
-                        <span>Nome do Curso</span>
-                    </div>
-                </a>
-            </li>
             <li>
                 <a href="#" class="list-item">
                     <!-- ICON -->
