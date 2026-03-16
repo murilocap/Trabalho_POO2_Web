@@ -20,10 +20,10 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
-    list-style: none;
-    text-decoration: none;
     color: var(--text-color-1);
+    text-decoration: none;
     user-select: none;
+    list-style: none;
 }
 
 body {
@@ -144,6 +144,12 @@ main {
                 display: flex;
             }
 
+            & .list-actions {
+                margin-left: auto;
+                display: flex;
+                gap: 10px;
+            }
+
             & .material-symbols-outlined {
                 color: var(--text-color-2);
             }
@@ -155,6 +161,36 @@ main {
         }
     }
 
+}
+
+.table {
+    outline: var(--border);
+    border-radius: 10px;
+    border-collapse: collapse;
+    width: 100%;
+    overflow: hidden;
+
+    & thead th {
+        border-bottom: var(--border);
+        padding: 4px 8px;
+        background-color: var(--surface);
+        text-align: left;
+        color: var(--text-color-3);
+        font-weight: 500;
+    }
+
+    & tbody td {
+        border-bottom: var(--border);
+        padding: 8px 12px;
+        color: var(--text-color-2);
+        background-color: var(--surface);
+
+        & span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+    }
 }
 
 .action-button {
@@ -191,6 +227,42 @@ main {
     }
 }
 
+.default-button {
+    cursor: pointer;
+    border: var(--border);
+    border-radius: 10px;
+    padding: 4px 16px 4px 12px;
+    color: var(--text-color-3);
+    background-color: var(--on-surface-container);
+    font-size: .82em;
+    font-weight: 500;
+    box-shadow: 0 0 0 #00000020;
+    display: inline-flex;
+    gap: 2px;
+    align-items: center;
+    transition: all .2s ease-in-out;
+    
+    & .material-symbols-outlined {
+        font-size: 20px;
+        color: var(--text-color-3);
+    }
+
+    &:hover {
+        cursor: pointer;
+        border: var(--border);
+        background-color: #FFFFFF;
+        color: var(--green-1);
+        box-shadow: 0 2px 6px #00000020;
+
+        & .material-symbols-outlined {
+            color: var(--green-1);
+        }
+    }
+    &:active {
+        transform: scale(.9);
+    }
+}
+
 .cancel-button {
     cursor: pointer;
     border: var(--border);
@@ -209,6 +281,42 @@ main {
     & .material-symbols-outlined {
         font-size: 20px;
         color: var(--text-color-3);
+    }
+
+    &:hover {
+        cursor: pointer;
+        border: var(--border);
+        background-color: #FFFFFF;
+        color: var(--red-1);
+        box-shadow: 0 2px 6px #00000020;
+
+        & .material-symbols-outlined {
+            color: var(--red-1);
+        }
+    }
+    &:active {
+        transform: scale(.9);
+    }
+}
+
+.delete-button {
+    cursor: pointer;
+    border: var(--border);
+    border-radius: 10px;
+    padding: 4px 16px 4px 12px;
+    color: #FFFFFF;
+    background-color: var(--red-1);
+    font-size: .82em;
+    font-weight: 500;
+    box-shadow: 0 0 0 #00000020;
+    display: inline-flex;
+    gap: 2px;
+    align-items: center;
+    transition: all .2s ease-in-out;
+
+    & .material-symbols-outlined {
+        font-size: 20px;
+        color: #FFFFFF;
     }
 
     &:hover {

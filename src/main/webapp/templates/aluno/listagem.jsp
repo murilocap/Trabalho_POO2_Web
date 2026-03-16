@@ -6,14 +6,13 @@
 <%
     List<Aluno> alunos = (List<Aluno>) request.getAttribute("alunos");
 %>
-
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Alunos | Acadêmico</title>
 
-        <link rel="stylesheet" href="/Trabalho_POO2_Web/style/global.css">
+        <link rel="stylesheet" href="../../style/global.css">
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     </head>
     <body>
@@ -71,28 +70,45 @@
                     Cadastrar
                 </a>
             </div>
-            <ul class="main-list">
 
-                <% for (Aluno a : alunos) {%>
-
-                <li>
-                    <a href="AlunoController?acao=edicao&id=<%= a.getId()%>" class="list-item">
-
-                        <!-- ICON -->
-                        <div>
-                            <span class="material-symbols-outlined">person_edit</span>
-                        </div>
-
-                        <!-- NAME -->
-                        <div>
-                            <span><%= a.getNome()%> | <%= a.getMatricula()%></span>
-                        </div>
-
-                    </a>
-                </li>
-
-                <% }%>
-            </ul>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Matrícula</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (Aluno a : alunos) {%>
+                        <tr>
+                            <td>
+                                <span>
+                                    <span class="material-symbols-outlined">person_edit</span>
+                                    <%= a.getNome()%>
+                                </span>
+                            </td>
+                            <td>
+                                <span>
+                                    <%= a.getMatricula()%>
+                                </span>
+                            </td>
+                            <td>
+                                <span>
+                                    <a href="AlunoController?acao=edicao&id=<%= a.getId()%>" class="default-button">
+                                        <span class="material-symbols-outlined">edit</span>
+                                        Editar
+                                    </a>
+                                    <a href="AlunoController?acao=exclusao&id=<%= a.getId()%>" class="delete-button">
+                                        <span class="material-symbols-outlined">delete</span>
+                                        Excluir
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                    <% }%>
+                </tbody>
+            </table>
         </main>
 
     </body>
