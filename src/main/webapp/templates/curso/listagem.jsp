@@ -1,9 +1,3 @@
-<%-- 
-    Document   : listagem
-    Created on : 15 de mar. de 2026, 11:47:52
-    Author     : isaac
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Curso" %>

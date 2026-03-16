@@ -28,7 +28,7 @@ public class Curso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
-    
+
     @ManyToOne
     @JoinColumn(name = "coordenador_id")
     private Professor coordenador;

@@ -1,10 +1,22 @@
+<%@page import="java.util.Collection"%>
+<%@page import="java.util.List"%>
+<%@page import="model.Turma"%>
+<%@page import="model.Aluno"%>
+<%@page import="model.Disciplina"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    <%
+        List<Turma> turmas = (List<Turma>) request.getAttribute("turmas");
+    %>
+    Collection<Disciplina> disciplinas = turma.getDisciplinas();
+    Collection<Aluno> alunos = turma.getAlunos();
+%>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursos | Acadêmico</title>
+    <title>Turmas | Acadêmico</title>
 
     <link rel="stylesheet" href="/Trabalho_POO2_Web/style/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
@@ -65,42 +77,98 @@
             </a>
         </div>
         <ul class="main-list">
-            <li>
-                <a href="#" class="list-item">
-                    <!-- ICON -->
+            <% for (Turma t : turmas) { %>
+                <li class="list-item">
                     <div>
-                        <span class="material-symbols-outlined">groups</span>
+                        <!-- ICON -->
+                        <div>
+                            <span class="material-symbols-outlined">groups</span>
+                        </div>
+                        <!-- NAME -->
+                        <div>
+                            <span>Nome da Turma</span>
+                        </div>
                     </div>
-                    <!-- NAME -->
-                    <div>
-                        <span>Nome da Turma</span>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="list-item">
-                    <!-- ICON -->
-                    <div>
-                        <span class="material-symbols-outlined">groups</span>
-                    </div>
-                    <!-- NAME -->
-                    <div>
-                        <span>Nome da Turma</span>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="list-item">
-                    <!-- ICON -->
-                    <div>
-                        <span class="material-symbols-outlined">groups</span>
-                    </div>
-                    <!-- NAME -->
-                    <div>
-                        <span>Nome da Turma</span>
-                    </div>
-                </a>
-            </li>
+                    <!-- DISCIPLINAS -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Professor</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (Disciplina d : disciplinas) {%>
+                                <tr>
+                                    <td>
+                                        <span>
+                                            <span class="material-symbols-outlined">menu_book</span>
+                                            <%= d.getNome()%>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <%= d.getProfessor().getNome()%>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <a href="DisciplinaController?acao=edicao&id=<%= d.getId()%>" class="default-button">
+                                                <span class="material-symbols-outlined">edit</span>
+                                                Editar
+                                            </a>
+                                            <a href="DisciplinaController?acao=exclusao&id=<%= d.getId()%>" class="delete-button">
+                                                <span class="material-symbols-outlined">delete</span>
+                                                Excluir
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            <% }%>
+                        </tbody>
+                    </table>
+                    <!-- ALUNOS -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Matrícula</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (Aluno a : alunos) {%>
+                                <tr>
+                                    <td>
+                                        <span>
+                                            <span class="material-symbols-outlined">person_edit</span>
+                                            <%= a.getNome()%>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <%= a.getMatricula()%>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <a href="AlunoController?acao=edicao&id=<%= a.getId()%>" class="default-button">
+                                                <span class="material-symbols-outlined">edit</span>
+                                                Editar
+                                            </a>
+                                            <a href="AlunoController?acao=exclusao&id=<%= a.getId()%>" class="delete-button">
+                                                <span class="material-symbols-outlined">delete</span>
+                                                Excluir
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            <% }%>
+                        </tbody>
+                    </table>
+                </li>
+            <% }%>
         </ul>
     </main>
 
