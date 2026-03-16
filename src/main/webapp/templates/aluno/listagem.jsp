@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Alunos | Acadêmico</title>
 
-        <link rel="stylesheet" href="../../style/global.css">
+        <link rel="stylesheet" href="/Trabalho_POO2_Web/style/global.css">
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     </head>
     <body>

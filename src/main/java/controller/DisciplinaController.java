@@ -29,9 +29,11 @@ public class DisciplinaController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String prof_id = request.getParameter("professorId");
-        int id = 0;
+        String nome = request.getParameter("nome");
         
-        if(prof_id != null){
+        int id = 0;
+
+        if (prof_id != null) {
             id = Integer.parseInt(prof_id);
         }
 
@@ -58,21 +60,26 @@ public class DisciplinaController extends HttpServlet {
 
                 break;
 
-            /*case "inclusao":
+            case "inclusao":
 
+                ProfessorDaoJpa profDao = DaoFactory.novoProfessorDao();
+                Professor professor;
                 try {
+                    professor = profDao.pesquisarPorId(id);
                     Disciplina disciplina = new Disciplina();
-                    disciplina.setProfessor()
-                    disciplina.DisciplinaDaoJpa DisciplinaNova = DaoFactory.novaDisciplinaDao();
-                    alunoNovo.incluir(aluno);
+                    disciplina.setProfessor(professor);
+                    disciplina.setNome(nome);
+                    DisciplinaDaoJpa DisciplinaNova = DaoFactory.novaDisciplinaDao();
+                    disciplina.setProfessor(professor);
+                    DisciplinaNova.incluir(disciplina);
 
-                    response.sendRedirect("AlunoController?acao=listagem");
-                    return;
-                } catch (Exception error) {
-                    response.sendRedirect("erroDeExcecao.html");
+                    response.sendRedirect("DisciplinaController?acao=listagem");
+                   
+                } catch (Exception ex) {
+                    System.getLogger(DisciplinaController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
                 }
 
-                break;*/
+                break;
 
             case "edicao":
 
@@ -85,7 +92,7 @@ public class DisciplinaController extends HttpServlet {
             case "listagem":
                 DisciplinaDaoJpa dao = DaoFactory.novaDisciplinaDao();
                 List<Disciplina> lista = null;
-                
+
                 try {
                     lista = dao.listar();
                 } catch (Exception ex) {

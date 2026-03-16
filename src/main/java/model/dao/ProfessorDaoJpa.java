@@ -67,4 +67,13 @@ public class ProfessorDaoJpa implements InterfaceDao<Professor>{
          return listaProfessor;
     }
     
+    public Professor pesquisarPorId(int id) throws Exception {
+        EntityManager em = ConnFactory.getEntityManager();
+    try {
+        return em.find(Professor.class, id);
+    } catch (Exception e) {
+        throw new Exception("Erro ao buscar professor por ID", e);
+    }
+}
+    
 }

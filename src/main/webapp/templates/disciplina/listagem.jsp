@@ -12,7 +12,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Alunos | Acadêmico</title>
+        <title>Disciplinas | Acadêmico</title>
 
         <link rel="stylesheet" href="/Trabalho_POO2_Web/style/global.css">
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
@@ -38,7 +38,7 @@
                         Turmas
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item active">
                     <a href="/Trabalho_POO2_Web/DisciplinaController?acao=listagem">
                         <span class="material-symbols-outlined">menu_book</span>
                         Disciplinas
@@ -50,7 +50,7 @@
                         Professores
                     </a>
                 </li>
-                <li class="menu-item active">
+                <li class="menu-item">
                     <a href="/Trabalho_POO2_Web/AlunoController?acao=listagem">
                         <span class="material-symbols-outlined">person_edit</span>
                         Alunos
@@ -67,7 +67,7 @@
         <main>
             <div>
                 <h2 class="page-title">Disciplinas</h2>
-                <a href="/Trabalho_POO2_Web/templates/disciplina/cadastro.jsp" class="action-button">
+                <a href="/Trabalho_POO2_Web/DisciplinaController?acao=cadastro" class="action-button">
                     <span class="material-symbols-outlined">add</span>
                     Cadastrar
                 </a>
