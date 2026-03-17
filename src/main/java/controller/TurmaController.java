@@ -73,10 +73,34 @@ public class TurmaController extends HttpServlet {
 
             case "inclusao":
                 try {
-                    dao.incluir(turma);
+
+                    Turma turmaInclusao = new Turma();
+                    turmaInclusao.setCod_turma(codTurma);
+
+                    // alunos
+                    if (alunosId != null) {
+                        Collection<Aluno> listaAlunos = new ArrayList<>();
+                        for (String a_id : alunosId) {
+                            listaAlunos.add(alunoDao.pesquisarPorId(Integer.parseInt(a_id)));
+                        }
+                        turmaInclusao.setAlunos(listaAlunos);
+                    }
+
+                    if (disciplinasId != null) {
+                        Collection<Disciplina> listaDisciplinas = new ArrayList<>();
+                        for (String d_id : disciplinasId) {
+                            listaDisciplinas.add(disciplinaDao.pesquisarPorId(Integer.parseInt(d_id)));
+                        }
+                        turmaInclusao.setDisciplinas(listaDisciplinas);
+                    }
+
+                    dao.incluir(turmaInclusao);
+
                     response.sendRedirect("TurmaController?acao=listagem");
                     return;
+
                 } catch (Exception error) {
+                    error.printStackTrace();
                     response.sendRedirect("erroDeExcecao.html");
                 }
                 break;
@@ -92,10 +116,36 @@ public class TurmaController extends HttpServlet {
 
             case "edicao":
                 try {
-                    dao.editar(turma);
+
+                    Turma turmaEdicao = dao.pesquisarPorId(id);
+
+                    turmaEdicao.setCod_turma(codTurma);
+
+                    // alunos
+                    Collection<Aluno> listaAlunos = new ArrayList<>();
+                    if (alunosId != null) {
+                        for (String a_id : alunosId) {
+                            listaAlunos.add(alunoDao.pesquisarPorId(Integer.parseInt(a_id)));
+                        }
+                    }
+                    turmaEdicao.setAlunos(listaAlunos);
+
+                    // disciplinas
+                    Collection<Disciplina> listaDisciplinas = new ArrayList<>();
+                    if (disciplinasId != null) {
+                        for (String d_id : disciplinasId) {
+                            listaDisciplinas.add(disciplinaDao.pesquisarPorId(Integer.parseInt(d_id)));
+                        }
+                    }
+                    turmaEdicao.setDisciplinas(listaDisciplinas);
+
+                    dao.editar(turmaEdicao);
+
                     response.sendRedirect("TurmaController?acao=listagem");
                     return;
+
                 } catch (Exception error) {
+                    error.printStackTrace(); // 👈 importante
                     response.sendRedirect("erroDeExcecao.html");
                 }
                 break;
