@@ -14,10 +14,6 @@ public class DaoFactory {
         return new TurmaDaoJpa();
     }
     
-    public static CursoDaoJpa novoCursoDao(){
-        return new CursoDaoJpa();
-    }
-    
     public static DisciplinaDaoJpa novaDisciplinaDao(){
         return new DisciplinaDaoJpa();
     }
