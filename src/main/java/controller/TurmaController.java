@@ -12,7 +12,6 @@ import model.dao.AlunoDaoJpa;
 import model.dao.DaoFactory;
 import model.dao.DisciplinaDaoJpa;
 import model.dao.TurmaDaoJpa;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,124 +20,101 @@ import java.util.List;
 public class TurmaController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-
         response.setContentType("text/html;charset=UTF-8");
 
-        String acao = request.getParameter("acao");
-        String idParam = request.getParameter("id");
+        String acao             = request.getParameter("acao");
+        String idParam          = request.getParameter("id");
+        String codTurma         = request.getParameter("cod_turma");
+        String[] alunosId       = request.getParameterValues("alunosId");
+        String[] disciplinasId  = request.getParameterValues("disciplinasId");
 
-        String codTurma = request.getParameter("cod_turma");
+        int id = 0;
 
-        String[] alunosId = request.getParameterValues("alunosId");
-        String[] disciplinasId = request.getParameterValues("disciplinasId");
-
-        TurmaDaoJpa dao = DaoFactory.novaTurmaDao();
-        AlunoDaoJpa alunoDao = DaoFactory.novoAlunoDao();
-        DisciplinaDaoJpa disciplinaDao = DaoFactory.novaDisciplinaDao();
-
+        TurmaDaoJpa dao                 = DaoFactory.novaTurmaDao();
+        AlunoDaoJpa alunoDao            = DaoFactory.novoAlunoDao();
+        DisciplinaDaoJpa disciplinaDao  = DaoFactory.novaDisciplinaDao();
         RequestDispatcher rd = null;
+
+        Turma turma = new Turma();
+        if (codTurma != null && !codTurma.isEmpty()) {
+            turma.setCod_turma(codTurma);
+        }
+        if (alunosId != null &&  alunosId.length > 0) {
+            Collection<Aluno> listaAlunos = List.of();
+            for (String a_id : alunosId) {
+                listaAlunos.add(
+                    alunoDao.pesquisarPorId(Integer.parseInt(a_id))
+                );
+            }
+            turma.setAlunos(listaAlunos);
+        }
+        if (disciplinasId != null &&  disciplinasId.length > 0) {
+            Collection<Disciplina> listaDisciplinas = List.of();
+            for (String d_id : disciplinasId) {
+                listaDisciplinas.add(
+                    disciplinaDao.pesquisarPorId(Integer.parseInt(d_id))
+                );
+            }
+            turma.setDisciplinas(listaDisciplinas);
+        }
+        if (idParam != null && !idParam.isEmpty()) {
+            id = Integer.parseInt(idParam);
+            turma.setId(id);
+        }
 
         switch (acao) {
 
-            case "inclusao":
-
-                try {
-
-                    Turma turma = new Turma();
-
-                    turma.setCod_turma(codTurma);
-
-                    // Alunos
-                    if (alunosId != null) {
-
-                        Collection<Aluno> alunos = new ArrayList<>();
-
-                        for (String aid : alunosId) {
-
-                            Aluno a = alunoDao.pesquisarPorId(Integer.parseInt(aid));
-                            alunos.add(a);
-
-                        }
-
-                        turma.setAlunos(alunos);
-                    }
-
-                    // Disciplinas
-                    if (disciplinasId != null) {
-
-                        Collection<Disciplina> disciplinas = new ArrayList<>();
-
-                        for (String did : disciplinasId) {
-
-                            Disciplina d = disciplinaDao.pesquisarPorId(Integer.parseInt(did));
-                            disciplinas.add(d);
-
-                        }
-
-                        turma.setDisciplinas(disciplinas);
-                    }
-
-                    if (idParam == null || idParam.isEmpty()) {
-
-                        dao.incluir(turma);
-
-                    } else {
-
-                        turma.setId(Integer.parseInt(idParam));
-                        dao.editar(turma);
-
-                    }
-
-                    response.sendRedirect("TurmaController?acao=listagem");
-                    return;
-
-                } catch (Exception error) {
-
-                    response.sendRedirect("erroDeExcecao.html");
-
-                }
-
-                break;
-
-            case "edicao":
-
-                Turma turma = dao.pesquisarPorId(Integer.parseInt(idParam));
-
-                request.setAttribute("turma", turma);
+            case "formularioInclusao":
                 request.setAttribute("alunos", alunoDao.listar());
-                request.setAttribute("disciplinas", disciplinaDao.listar());
-
+                request.setAttribute("disciplinas", alunoDao.listar());
                 rd = request.getRequestDispatcher("/templates/turma/cadastro.jsp");
                 rd.forward(request, response);
-
                 return;
 
-            case "exclusao":
-
+            case "inclusao":
                 try {
-
-                    dao.excluir(Integer.parseInt(idParam));
-
+                    dao.incluir(turma);
                     response.sendRedirect("TurmaController?acao=listagem");
                     return;
-
                 } catch (Exception error) {
-
                     response.sendRedirect("erroDeExcecao.html");
-
                 }
+                break;
 
+            case "formularioEdicao":
+                Turma turmaForm = dao.pesquisarPorId(id);
+                request.setAttribute("disciplina", turmaForm);
+                request.setAttribute("alunos", alunoDao.listar());
+                request.setAttribute("disciplinas", alunoDao.listar());
+                rd = request.getRequestDispatcher("/templates/turma/edicao.jsp");
+                rd.forward(request, response);
+                return;
+
+            case "edicao":
+                try {
+                    dao.editar(turma);
+                    response.sendRedirect("TurmaController?acao=listagem");
+                    return;
+                } catch (Exception error) {
+                    response.sendRedirect("erroDeExcecao.html");
+                }
+                break;
+
+            case "exclusao":
+                try {
+                    dao.excluir(id);
+                    response.sendRedirect("TurmaController?acao=listagem");
+                    return;
+                } catch (Exception error) {
+                    response.sendRedirect("erroDeExcecao.html");
+                }
                 break;
 
             case "listagem":
-
                 List<Turma> lista = dao.listar();
-
                 request.setAttribute("turmas", lista);
-
                 rd = request.getRequestDispatcher("/templates/turma/listagem.jsp");
                 rd.forward(request, response);
-
                 break;
 
         }

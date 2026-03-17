@@ -1,7 +1,7 @@
-<%@page import="java.util.List"%>
-<%@page import="model.Aluno"%>
-<%@page import="model.Disciplina"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="model.Disciplina"%>
+<%@page import="model.Aluno"%>
 <%
     List<Aluno> alunos = (List<Aluno>) request.getAttribute("alunos");
     List<Disciplina> disciplinas = (List<Disciplina>) request.getAttribute("disciplinas");
@@ -74,7 +74,6 @@
 
         <form action="/Trabalho_POO2_Web/TurmaController" method="post" class="register">
             <input type="hidden" name="acao" value="inclusao">
-            <!-- CODIGO DA TURMA -->
             <fieldset>
                 <label for="cod_turma">
                     <span class="material-symbols-outlined">groups</span>
@@ -84,7 +83,6 @@
                     <input type="text" name="cod_turma" id="cod_turma">
                 </div>
             </fieldset>
-            <!-- DISCIPLINAS -->
             <fieldset>
                 <label>
                     <span class="material-symbols-outlined">menu_book</span>
@@ -108,7 +106,6 @@
 
                 </div>
             </fieldset>
-            <!-- ALUNOS -->
             <fieldset>
             <label>
                 <span class="material-symbols-outlined">person_edit</span>
@@ -130,13 +127,12 @@
             </div>
 
             </fieldset>
-            <!-- BOTÕES -->
             <fieldset>
                 <button class="action-button" type="submit">
                     <span class="material-symbols-outlined">check_small</span>
                     Salvar
                 </button>
-                <a class="cancel-button" href="/Trabalho_POO2_Web/templates/turma/listagem.jsp">
+                <a class="cancel-button" href="TurmaController?acao=listagem">
                     <span class="material-symbols-outlined">chevron_left</span>
                     Cancelar
                 </a>

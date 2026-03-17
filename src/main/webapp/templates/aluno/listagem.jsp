@@ -65,7 +65,7 @@
         <main>
             <div>
                 <h2 class="page-title">Alunos</h2>
-                <a href="AlunoController?acao=formularioInclusao" class="action-button">
+                <a href="/Trabalho_POO2_Web/AlunoController?acao=formularioInclusao" class="action-button">
                     <span class="material-symbols-outlined">add</span>
                     Cadastrar
                 </a>

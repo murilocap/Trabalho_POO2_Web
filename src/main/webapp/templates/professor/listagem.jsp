@@ -65,7 +65,7 @@
     <main>
         <div>
             <h2 class="page-title">Professores</h2>
-            <a href="/Trabalho_POO2_Web/templates/professor/cadastro.jsp" class="action-button">
+            <a href="/Trabalho_POO2_Web/ProfessorController?acao=formularioInclusao" class="action-button">
                 <span class="material-symbols-outlined">add</span>
                 Cadastrar
             </a>

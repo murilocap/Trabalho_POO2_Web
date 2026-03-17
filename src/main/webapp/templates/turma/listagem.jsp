@@ -1,13 +1,11 @@
-<%@page import="java.util.Collection"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
+<%@page import="model.Disciplina"%>
 <%@page import="model.Turma"%>
 <%@page import="model.Aluno"%>
-<%@page import="model.Disciplina"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-        List<Turma> turmas = (List<Turma>) request.getAttribute("turmas");
-         Disciplina disciplina = (Disciplina) request.getAttribute("disciplina");
+    List<Turma> turmas = (List<Turma>) request.getAttribute("turmas");
 %>
 <html lang="pt-br">
 <head>
@@ -17,6 +15,7 @@
 
     <link rel="stylesheet" href="/Trabalho_POO2_Web/style/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <script src="/Trabalho_POO2_Web/js/exclusao.js"></script>
 </head>
 <body>
 
@@ -26,49 +25,49 @@
         </span>
 
         <nav>
-            <ul class="menu">
-                <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/curso/listagem.jsp">
-                        <span class="material-symbols-outlined">school</span>
-                        Cursos
-                    </a>
-                </li>
-                <li class="menu-item active">
-                    <a href="/Trabalho_POO2_Web/templates/turma/listagem.jsp">
-                        <span class="material-symbols-outlined">groups</span>
-                        Turmas
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/disciplina/listagem.jsp">
-                        <span class="material-symbols-outlined">menu_book</span>
-                        Disciplinas
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/professor/listagem.jsp">
-                        <span class="material-symbols-outlined">person_apron</span>
-                        Professores
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/aluno/listagem.jsp">
-                        <span class="material-symbols-outlined">person_edit</span>
-                        Alunos
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <ul class="menu">
+            <li class="menu-item">
+                <a href="/Trabalho_POO2_Web/CursoController?acao=listagem">
+                    <span class="material-symbols-outlined">school</span>
+                    Cursos
+                </a>
+            </li>
+            <li class="menu-item active">
+                <a href="/Trabalho_POO2_Web/TurmaController?acao=listagem">
+                    <span class="material-symbols-outlined">groups</span>
+                    Turmas
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="/Trabalho_POO2_Web/DisciplinaController?acao=listagem">
+                    <span class="material-symbols-outlined">menu_book</span>
+                    Disciplinas
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="/Trabalho_POO2_Web/ProfessorController?acao=listagem">
+                    <span class="material-symbols-outlined">person_apron</span>
+                    Professores
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="/Trabalho_POO2_Web/AlunoController?acao=listagem">
+                    <span class="material-symbols-outlined">person_edit</span>
+                    Alunos
+                </a>
+            </li>
+        </ul>
+    </nav>
 
         <span class="iff-logo">
-            <img src="../../../images/logo-iff.png" alt="Logo Instituto Federal Fluminense">
+            <img src="/Trabalho_POO2_Web/images/logo-iff.png" alt="Logo Instituto Federal Fluminense">
         </span>
     </header>
 
     <main>
         <div>
             <h2 class="page-title">Turmas</h2>
-            <a href="/Trabalho_POO2_Web/templates/turma/cadastro.jsp" class="action-button">
+            <a href="/Trabalho_POO2_Web/TurmaController?acao=formularioInclusao" class="action-button">
                 <span class="material-symbols-outlined">add</span>
                 Cadastrar
             </a>
@@ -85,6 +84,19 @@
                         <div>
                             <span>Nome da Turma</span>
                         </div>
+                        <!-- ACTIONS -->
+                        <div>
+                            <span>
+                                <a href="TurmaController?acao=formularioEdicao&id=<%= t.getId()%>" class="default-button">
+                                    <span class="material-symbols-outlined">edit</span>
+                                    Editar
+                                </a>
+                                <button type="button" onclick="confirmarExclusao('TurmaController?acao=exclusao&id=<%= t.getId()%>')" class="delete-button">
+                                    <span class="material-symbols-outlined">delete</span>
+                                    Excluir
+                                </button>
+                            </span>
+                        </div>
                     </div>
                     <!-- DISCIPLINAS -->
                     <table class="table">
@@ -92,7 +104,6 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>Professor</th>
-                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -109,18 +120,6 @@
                                             <%= d.getProfessor().getNome()%>
                                         </span>
                                     </td>
-                                    <td>
-                                        <span>
-                                            <a href="DisciplinaController?acao=edicao&id=<%= d.getId()%>" class="default-button">
-                                                <span class="material-symbols-outlined">edit</span>
-                                                Editar
-                                            </a>
-                                            <a href="DisciplinaController?acao=exclusao&id=<%= d.getId()%>" class="delete-button">
-                                                <span class="material-symbols-outlined">delete</span>
-                                                Excluir
-                                            </a>
-                                        </span>
-                                    </td>
                                 </tr>
                             <% }%>
                         </tbody>
@@ -131,7 +130,6 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>Matrícula</th>
-                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -146,18 +144,6 @@
                                     <td>
                                         <span>
                                             <%= a.getMatricula()%>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span>
-                                            <a href="AlunoController?acao=edicao&id=<%= a.getId()%>" class="default-button">
-                                                <span class="material-symbols-outlined">edit</span>
-                                                Editar
-                                            </a>
-                                            <a href="AlunoController?acao=exclusao&id=<%= a.getId()%>" class="delete-button">
-                                                <span class="material-symbols-outlined">delete</span>
-                                                Excluir
-                                            </a>
                                         </span>
                                     </td>
                                 </tr>
