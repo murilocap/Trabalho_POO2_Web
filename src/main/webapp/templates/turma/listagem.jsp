@@ -82,7 +82,7 @@
                         </div>
                         <!-- NAME -->
                         <div>
-                            <span><%= t.getNome()%></span>
+                            <span><%= t.getCod_turma()%></span>
                         </div>
                         <!-- ACTIONS -->
                         <div style="margin-left: 40px;">
