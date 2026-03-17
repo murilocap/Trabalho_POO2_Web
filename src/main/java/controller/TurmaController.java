@@ -40,7 +40,7 @@ public class TurmaController extends HttpServlet {
             turma.setCod_turma(codTurma);
         }
         if (alunosId != null &&  alunosId.length > 0) {
-            Collection<Aluno> listaAlunos = List.of();
+            Collection<Aluno> listaAlunos = new ArrayList<>();
             for (String a_id : alunosId) {
                 listaAlunos.add(
                     alunoDao.pesquisarPorId(Integer.parseInt(a_id))
@@ -49,7 +49,7 @@ public class TurmaController extends HttpServlet {
             turma.setAlunos(listaAlunos);
         }
         if (disciplinasId != null &&  disciplinasId.length > 0) {
-            Collection<Disciplina> listaDisciplinas = List.of();
+            Collection<Disciplina> listaDisciplinas = new ArrayList<>();
             for (String d_id : disciplinasId) {
                 listaDisciplinas.add(
                     disciplinaDao.pesquisarPorId(Integer.parseInt(d_id))
