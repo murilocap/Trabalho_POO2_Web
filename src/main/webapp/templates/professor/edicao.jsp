@@ -80,8 +80,7 @@
                         type="text" 
                         name="matricula" 
                         id="matricula"
-                        value="<%= professor.getMatricula()%>"
-                        readonly
+                        value="<%= professor.getMatricula()%>"  
                     >
                 </div>
             </fieldset>

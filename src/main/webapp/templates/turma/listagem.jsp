@@ -74,7 +74,7 @@
         </div>
         <ul class="main-list">
             <% for (Turma t : turmas) { %>
-                <li class="list-item">
+                <li class="list-item" style="flex-direction: column;">
                     <div>
                         <!-- ICON -->
                         <div>
