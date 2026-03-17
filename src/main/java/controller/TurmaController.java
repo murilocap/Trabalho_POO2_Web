@@ -66,7 +66,7 @@ public class TurmaController extends HttpServlet {
 
             case "formularioInclusao":
                 request.setAttribute("alunos", alunoDao.listar());
-                request.setAttribute("disciplinas", alunoDao.listar());
+                request.setAttribute("disciplinas", disciplinaDao.listar());
                 rd = request.getRequestDispatcher("/templates/turma/cadastro.jsp");
                 rd.forward(request, response);
                 return;
@@ -83,9 +83,9 @@ public class TurmaController extends HttpServlet {
 
             case "formularioEdicao":
                 Turma turmaForm = dao.pesquisarPorId(id);
-                request.setAttribute("disciplina", turmaForm);
+                request.setAttribute("turma", turmaForm);
                 request.setAttribute("alunos", alunoDao.listar());
-                request.setAttribute("disciplinas", alunoDao.listar());
+                request.setAttribute("disciplinas", disciplinaDao.listar());
                 rd = request.getRequestDispatcher("/templates/turma/edicao.jsp");
                 rd.forward(request, response);
                 return;

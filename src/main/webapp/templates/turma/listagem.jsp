@@ -74,7 +74,7 @@
         </div>
         <ul class="main-list">
             <% for (Turma t : turmas) { %>
-                <li class="list-item" style="flex-direction: column;">
+                <li class="list-item" style="flex-direction: column; align-items: flex-start;">
                     <div>
                         <!-- ICON -->
                         <div>
@@ -82,10 +82,10 @@
                         </div>
                         <!-- NAME -->
                         <div>
-                            <span>Nome da Turma</span>
+                            <span><%= t.getNome()%></span>
                         </div>
                         <!-- ACTIONS -->
-                        <div>
+                        <div style="margin-left: 40px;">
                             <span>
                                 <a href="TurmaController?acao=formularioEdicao&id=<%= t.getId()%>" class="default-button">
                                     <span class="material-symbols-outlined">edit</span>
