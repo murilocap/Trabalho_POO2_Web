@@ -25,25 +25,25 @@
         <nav>
             <ul class="menu">
                 <li class="menu-item active">
-                    <a href="/Trabalho_POO2_Web/templates/curso/listagem.jsp">
+                    <a href="/Trabalho_POO2_Web/CursoController?acao=listagem">
                         <span class="material-symbols-outlined">school</span>
                         Cursos
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/turma/listagem.jsp">
+                    <a href="/Trabalho_POO2_Web/TurmaController?acao=listagem">
                         <span class="material-symbols-outlined">groups</span>
                         Turmas
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/disciplina/listagem.jsp">
+                    <a href="/Trabalho_POO2_Web/DisciplinaController?acao=listagem">
                         <span class="material-symbols-outlined">menu_book</span>
                         Disciplinas
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/professor/listagem.jsp">
+                    <a href="/Trabalho_POO2_Web/ProfessorController?acao=listagem">
                         <span class="material-symbols-outlined">person_apron</span>
                         Professores
                     </a>
