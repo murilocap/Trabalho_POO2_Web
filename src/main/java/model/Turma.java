@@ -22,7 +22,7 @@ public class Turma {
     private Collection<Aluno> alunos;
     
     //Cria a tabela intermediária = Turma_Disciplina
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "Turma_Disciplina",
             joinColumns = @JoinColumn(name = "Turma_id"),

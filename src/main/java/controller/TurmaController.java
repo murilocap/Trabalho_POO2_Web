@@ -29,13 +29,18 @@ public class TurmaController extends HttpServlet {
         String[] disciplinasId  = request.getParameterValues("disciplinasId");
 
         int id = 0;
-
+        
+        
+        
         TurmaDaoJpa dao                 = DaoFactory.novaTurmaDao();
         AlunoDaoJpa alunoDao            = DaoFactory.novoAlunoDao();
         DisciplinaDaoJpa disciplinaDao  = DaoFactory.novaDisciplinaDao();
         RequestDispatcher rd = null;
 
+        
+        
         Turma turma = new Turma();
+        
         if (codTurma != null && !codTurma.isEmpty()) {
             turma.setCod_turma(codTurma);
         }
@@ -77,7 +82,7 @@ public class TurmaController extends HttpServlet {
                     response.sendRedirect("TurmaController?acao=listagem");
                     return;
                 } catch (Exception error) {
-                    response.sendRedirect("erroDeExcecao.html");
+                    System.out.println("O ERRO TA AQUI ANIMAL ---->" + error.getMessage());
                 }
                 break;
 
@@ -113,6 +118,8 @@ public class TurmaController extends HttpServlet {
             case "listagem":
                 List<Turma> lista = dao.listar();
                 request.setAttribute("turmas", lista);
+                
+               
                 rd = request.getRequestDispatcher("/templates/turma/listagem.jsp");
                 rd.forward(request, response);
                 break;
