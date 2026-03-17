@@ -33,7 +33,7 @@ public class DisciplinaController extends HttpServlet {
             disciplina.setNome(nome);
         }
         if (professorId != null) {
-            int idProf = Integer.parseInt(idParam);
+            int idProf = Integer.parseInt(professorId);
             disciplina.setProfessor(
                 professorDao.pesquisarPorId(idProf)
             );
