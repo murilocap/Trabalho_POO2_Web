@@ -25,12 +25,6 @@
             <nav>
             <ul class="menu">
                 <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/CursoController?acao=listagem">
-                        <span class="material-symbols-outlined">school</span>
-                        Cursos
-                    </a>
-                </li>
-                <li class="menu-item">
                     <a href="/Trabalho_POO2_Web/TurmaController?acao=listagem">
                         <span class="material-symbols-outlined">groups</span>
                         Turmas
