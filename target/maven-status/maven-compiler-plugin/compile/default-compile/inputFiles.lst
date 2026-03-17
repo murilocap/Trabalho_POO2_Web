@@ -1,13 +1,10 @@
 C:\Users\isaac\OneDrive\Desktop\Trabalho_POO2\Trabalho_POO2_Web\src\main\java\controller\AlunoController.java
-C:\Users\isaac\OneDrive\Desktop\Trabalho_POO2\Trabalho_POO2_Web\src\main\java\controller\CursoController.java
 C:\Users\isaac\OneDrive\Desktop\Trabalho_POO2\Trabalho_POO2_Web\src\main\java\controller\DisciplinaController.java
 C:\Users\isaac\OneDrive\Desktop\Trabalho_POO2\Trabalho_POO2_Web\src\main\java\controller\ProfessorController.java
 C:\Users\isaac\OneDrive\Desktop\Trabalho_POO2\Trabalho_POO2_Web\src\main\java\controller\TurmaController.java
 C:\Users\isaac\OneDrive\Desktop\Trabalho_POO2\Trabalho_POO2_Web\src\main\java\model\Aluno.java
-C:\Users\isaac\OneDrive\Desktop\Trabalho_POO2\Trabalho_POO2_Web\src\main\java\model\Curso.java
 C:\Users\isaac\OneDrive\Desktop\Trabalho_POO2\Trabalho_POO2_Web\src\main\java\model\dao\AlunoDaoJpa.java
 C:\Users\isaac\OneDrive\Desktop\Trabalho_POO2\Trabalho_POO2_Web\src\main\java\model\dao\ConnFactory.java
-C:\Users\isaac\OneDrive\Desktop\Trabalho_POO2\Trabalho_POO2_Web\src\main\java\model\dao\CursoDaoJpa.java
 C:\Users\isaac\OneDrive\Desktop\Trabalho_POO2\Trabalho_POO2_Web\src\main\java\model\dao\DaoFactory.java
 C:\Users\isaac\OneDrive\Desktop\Trabalho_POO2\Trabalho_POO2_Web\src\main\java\model\dao\DisciplinaDaoJpa.java
 C:\Users\isaac\OneDrive\Desktop\Trabalho_POO2\Trabalho_POO2_Web\src\main\java\model\dao\InterfaceDao.java
