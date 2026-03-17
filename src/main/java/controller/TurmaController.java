@@ -29,6 +29,7 @@ public class TurmaController extends HttpServlet {
         String[] disciplinasId  = request.getParameterValues("disciplinasId");
 
         int id = 0;
+        // TESTE
 
         TurmaDaoJpa dao                 = DaoFactory.novaTurmaDao();
         AlunoDaoJpa alunoDao            = DaoFactory.novoAlunoDao();
