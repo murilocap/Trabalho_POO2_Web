@@ -84,7 +84,7 @@
                     <span class="material-symbols-outlined">menu_book</span>
                     <span>Disciplinas</span>
                 </label>
-                <div class="input">
+                <div class="input" style="display: flex; flex-direction: column; gap: 10px;">
 
                 <% for (Disciplina d : disciplinas) { %>
 
@@ -107,7 +107,7 @@
                 <span class="material-symbols-outlined">person_edit</span>
                 <span>Alunos</span>
             </label>
-            <div class="input">
+            <div class="input" style="display: flex; flex-direction: column; gap: 10px;">
             <% for (Aluno a : alunos) { %>
             <label style="display:block">
             <input type="checkbox"

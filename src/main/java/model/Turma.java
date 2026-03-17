@@ -1,13 +1,7 @@
 package model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+
 import java.util.Collection;
 
 @Entity
@@ -19,7 +13,7 @@ public class Turma {
     private String cod_turma;
     
     //Cria a tabela intermediária = Turma_Aluno
-    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "Turma_Aluno",
             joinColumns = @JoinColumn(name = "Turma_id"),
@@ -28,7 +22,7 @@ public class Turma {
     private Collection<Aluno> alunos;
     
     //Cria a tabela intermediária = Turma_Disciplina
-    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "Turma_Disciplina",
             joinColumns = @JoinColumn(name = "Turma_id"),

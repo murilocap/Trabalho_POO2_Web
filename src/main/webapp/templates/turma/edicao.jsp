@@ -3,15 +3,12 @@
 <%@page import="model.Turma"%>
 <%@page import="model.Disciplina"%>
 <%@page import="model.Aluno"%>
-
 <!DOCTYPE html>
-
 <%
     Turma turma = (Turma) request.getAttribute("turma");
     List<Aluno> alunos = (List<Aluno>) request.getAttribute("alunos");
     List<Disciplina> disciplinas = (List<Disciplina>) request.getAttribute("disciplinas");
 %>
-
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -100,7 +97,7 @@
                 <span class="material-symbols-outlined">menu_book</span>
                 <span>Disciplinas</span>
             </label>
-            <div class="input">
+            <div class="input" style="display: flex; flex-direction: column; gap: 10px;">
 
                 <% for (Disciplina d : disciplinas) {
 
@@ -141,7 +138,7 @@
                 <span>Alunos</span>
             </label>
 
-            <div class="input">
+            <div class="input" style="display: flex; flex-direction: column; gap: 10px;">
 
                 <% for (Aluno a : alunos) {
 
