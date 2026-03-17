@@ -67,7 +67,11 @@
         <main>
             <div>
                 <h2 class="page-title">Disciplinas</h2>
+
                 <a href="/Trabalho_POO2_Web/DisciplinaController?acao=cadastro" class="action-button">
+
+                <a href="/Trabalho_POO2_Web/DisciplinaController?acao=telaCadastro" class="action-button">
+
                     <span class="material-symbols-outlined">add</span>
                     Cadastrar
                 </a>

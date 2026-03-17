@@ -66,5 +66,4 @@ public class CursoDaoJpa implements InterfaceDao<Curso>{
             throw new Exception("Erro ao buscar curso por ID", e);
         }
     }
-    
 }

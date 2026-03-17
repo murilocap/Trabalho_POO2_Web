@@ -135,7 +135,21 @@ public class CursoController extends HttpServlet {
                 rd.forward(request, response);
 
                 break;
+                
+                
+            case "telaCadastro":
+                List<Professor> listaProf = professorDao.listar();
+                List<Turma> listaTurma = turmaDao.listar();
+
+                request.setAttribute("professores", listaProf);
+                request.setAttribute("turmas", listaTurma);
+
+                rd = request.getRequestDispatcher("/templates/curso/cadastro.jsp");
+                rd.forward(request, response);
+                break;
         }
+        
+        
 
     }
 

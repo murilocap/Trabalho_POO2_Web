@@ -17,8 +17,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import model.Professor;
+import model.dao.ProfessorDaoJpa;
 
 public class TurmaController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
@@ -35,6 +38,7 @@ public class TurmaController extends HttpServlet {
         TurmaDaoJpa dao = DaoFactory.novaTurmaDao();
         AlunoDaoJpa alunoDao = DaoFactory.novoAlunoDao();
         DisciplinaDaoJpa disciplinaDao = DaoFactory.novaDisciplinaDao();
+        ProfessorDaoJpa professorDao = DaoFactory.novoProfessorDao();
 
         RequestDispatcher rd = null;
 
@@ -140,6 +144,22 @@ public class TurmaController extends HttpServlet {
                 rd.forward(request, response);
 
                 break;
+
+            case "telaCadastro":
+
+                List<Disciplina> listaDisciplina = disciplinaDao.listar();
+                List<Aluno> listaAluno = alunoDao.listar();
+
+                request.setAttribute("disciplinas", listaDisciplina);
+                request.setAttribute("alunos", listaAluno);
+
+                rd = request.getRequestDispatcher("/templates/turma/cadastro.jsp");
+                rd.forward(request, response);
+
+                break;
+
+            case "excluirAlunoDeTurma":
+               
 
         }
 

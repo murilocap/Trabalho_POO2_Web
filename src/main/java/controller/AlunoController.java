@@ -63,11 +63,14 @@ public class AlunoController extends HttpServlet {
 
             case "exclusao":
                 try {
+                    
                     dao.excluir(Integer.parseInt(idParam));
                     response.sendRedirect("AlunoController?acao=listagem");
-                    return;
+                    
                 } catch (Exception error) {
-                    response.sendRedirect("erroDeExcecao.html");
+                    
+                    System.out.println(error);
+                    
                 }
 
                 break;

@@ -36,13 +36,13 @@
                         Disciplinas
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item active">
                     <a href="/Trabalho_POO2_Web/ProfessorController?acao=listagem">
                         <span class="material-symbols-outlined">person_apron</span>
                         Professores
                     </a>
                 </li>
-                <li class="menu-item active">
+                <li class="menu-item">
                     <a href="/Trabalho_POO2_Web/AlunoController?acao=listagem">
                         <span class="material-symbols-outlined">person_edit</span>
                         Alunos

@@ -57,13 +57,14 @@ public class AlunoDaoJpa implements InterfaceDao<Aluno>{
         }
          return listaAlunos;
     }
-
+    
+    
     public Aluno pesquisarPorId(int id) throws Exception {
         EntityManager em = ConnFactory.getEntityManager();
         try {
             return em.find(Aluno.class, id);
         } catch (Exception e) {
-            throw new Exception("Erro ao buscar professor por ID", e);
+            throw new Exception("Erro ao buscar aluno por ID", e);
         }
     }
    

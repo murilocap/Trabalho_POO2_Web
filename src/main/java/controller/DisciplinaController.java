@@ -89,7 +89,11 @@ public class DisciplinaController extends HttpServlet {
 
                     dao.excluir(Integer.parseInt(idParam));
 
+
                     response.sendRedirect("DisciplinaController?acao=listagem");
+
+                    response.sendRedirect("/Trabalho_POO2_Web/DisciplinaController?acao=listagem");
+
                     return;
 
                 } catch (Exception error) {
@@ -110,6 +114,21 @@ public class DisciplinaController extends HttpServlet {
                 rd.forward(request, response);
 
                 break;
+
+
+                
+                
+            case "telaCadastro":
+                
+                List<Professor> listaProf = professorDao.listar();
+
+                request.setAttribute("professores", listaProf);
+
+                rd = request.getRequestDispatcher("/templates/disciplina/cadastro.jsp");
+                rd.forward(request, response);
+                
+                break;
+
 
         }
 

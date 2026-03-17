@@ -63,7 +63,7 @@ public class DisciplinaDaoJpa implements InterfaceDao<Disciplina> {
         try {
             return em.find(Disciplina.class, id);
         } catch (Exception e) {
-            throw new Exception("Erro ao buscar professor por ID", e);
+            throw new Exception("Erro ao buscar disciplina por ID", e);
         }
     }
     

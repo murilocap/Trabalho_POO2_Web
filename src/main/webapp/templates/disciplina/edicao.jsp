@@ -48,7 +48,7 @@
                         Professores
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item active">
                     <a href="/Trabalho_POO2_Web/AlunoController?acao=listagem">
                         <span class="material-symbols-outlined">person_edit</span>
                         Alunos

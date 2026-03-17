@@ -25,25 +25,25 @@
         <nav>
             <ul class="menu">
                 <li class="menu-item active">
-                    <a href="/Trabalho_POO2_Web/templates/curso/listagem.jsp">
+                    <a href="/Trabalho_POO2_Web/CursoController?acao=listagem">
                         <span class="material-symbols-outlined">school</span>
                         Cursos
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/turma/listagem.jsp">
+                    <a href="/Trabalho_POO2_Web/TurmaController?acao=listagem">
                         <span class="material-symbols-outlined">groups</span>
                         Turmas
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/disciplina/listagem.jsp">
+                    <a href="/Trabalho_POO2_Web/DisciplinaController?acao=listagem">
                         <span class="material-symbols-outlined">menu_book</span>
                         Disciplinas
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/Trabalho_POO2_Web/templates/professor/listagem.jsp">
+                    <a href="/Trabalho_POO2_Web/ProfessorController?acao=listagem">
                         <span class="material-symbols-outlined">person_apron</span>
                         Professores
                     </a>
@@ -65,7 +65,7 @@
     <main>
         <div>
             <h2 class="page-title">Cursos</h2>
-            <a href="#" class="action-button">
+            <a href="/Trabalho_POO2_Web/CursoController?acao=telaCadastro" class="action-button">
                 <span class="material-symbols-outlined">add</span>
                 Cadastrar
             </a>
@@ -90,7 +90,7 @@
                             <td>
                                 <span style="color: <%= c.getCor() %>;">
                                     <span class="material-symbols-outlined" style="color: <%= c.getCor() %>;">school</span>
-                                    <%= c.getNome()%>
+                                    <%= c.getCoordenador().getNome() %>
                                 </span>
                             </td>
                         </tr>
