@@ -56,7 +56,7 @@ public class AlunoController extends HttpServlet {
 
                 request.setAttribute("aluno", aluno);
 
-                rd = request.getRequestDispatcher("/templates/aluno/cadastro.jsp");
+                rd = request.getRequestDispatcher("/templates/aluno/edicao.jsp");
                 rd.forward(request, response);
 
                 return;

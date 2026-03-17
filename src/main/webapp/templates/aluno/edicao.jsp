@@ -1,6 +1,10 @@
+<%@page import="java.util.List"%>
 <%@page import="model.Aluno"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+     Aluno aluno = (Aluno)  request.getAttribute("aluno");
+%>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">

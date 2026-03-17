@@ -89,7 +89,7 @@ public class DisciplinaController extends HttpServlet {
 
                     dao.excluir(Integer.parseInt(idParam));
 
-                    response.sendRedirect("DisciplinaController?acao=listagem");
+                    response.sendRedirect("DisciplinaController?acao=listagem.jsp");
                     return;
 
                 } catch (Exception error) {
@@ -109,6 +109,12 @@ public class DisciplinaController extends HttpServlet {
                 rd = request.getRequestDispatcher("/templates/disciplina/listagem.jsp");
                 rd.forward(request, response);
 
+                break;
+                
+                
+            case "listar-cadastro":
+                
+                
                 break;
 
         }

@@ -1,3 +1,4 @@
+<%@page import="java.util.Collection"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Turma"%>
 <%@page import="model.Aluno"%>
@@ -5,11 +6,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-    <%
         List<Turma> turmas = (List<Turma>) request.getAttribute("turmas");
-    %>
-    Collection<Disciplina> disciplinas = turma.getDisciplinas();
-    Collection<Aluno> alunos = turma.getAlunos();
+         Disciplina disciplina = (Disciplina) request.getAttribute("disciplina");
 %>
 <html lang="pt-br">
 <head>
@@ -70,7 +68,7 @@
     <main>
         <div>
             <h2 class="page-title">Turmas</h2>
-            <a href="#" class="action-button">
+            <a href="/Trabalho_POO2_Web/templates/turma/cadastro.jsp" class="action-button">
                 <span class="material-symbols-outlined">add</span>
                 Cadastrar
             </a>
@@ -98,7 +96,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% for (Disciplina d : disciplinas) {%>
+                            <% for (Disciplina d : t.getDisciplinas()) {%>
                                 <tr>
                                     <td>
                                         <span>
@@ -137,7 +135,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% for (Aluno a : alunos) {%>
+                            <% for (Aluno a : t.getAlunos()) {%>
                                 <tr>
                                     <td>
                                         <span>
