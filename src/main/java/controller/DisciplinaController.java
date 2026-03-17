@@ -6,115 +6,94 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Disciplina;
-import model.Professor;
 import model.dao.DaoFactory;
 import model.dao.DisciplinaDaoJpa;
 import model.dao.ProfessorDaoJpa;
-
 import java.io.IOException;
 import java.util.List;
 
 public class DisciplinaController extends HttpServlet {
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-
         response.setContentType("text/html;charset=UTF-8");
 
-        String acao = request.getParameter("acao");
-        String idParam = request.getParameter("id");
+        String acao         = request.getParameter("acao");
+        String idParam      = request.getParameter("id");
+        String nome         = request.getParameter("nome");
+        String professorId  = request.getParameter("professorId");
 
-        String nome = request.getParameter("nome");
-        String professorId = request.getParameter("professorId");
+        int id = 0;
 
-        DisciplinaDaoJpa dao = DaoFactory.novaDisciplinaDao();
         ProfessorDaoJpa professorDao = DaoFactory.novoProfessorDao();
-
+        DisciplinaDaoJpa dao = DaoFactory.novaDisciplinaDao();
         RequestDispatcher rd = null;
+
+        Disciplina disciplina = new Disciplina();
+        if (nome != null && !nome.isEmpty()) {
+            disciplina.setNome(nome);
+        }
+        if (professorId != null) {
+            int idProf = Integer.parseInt(idParam);
+            disciplina.setProfessor(
+                professorDao.pesquisarPorId(idProf)
+            );
+        }
+        if (idParam != null && !idParam.isEmpty()) {
+            id = Integer.parseInt(idParam);
+            disciplina.setId(id);
+        }
 
         switch (acao) {
 
-            case "inclusao":
-
-                try {
-
-                    Disciplina disciplina = new Disciplina();
-
-                    disciplina.setNome(nome);
-
-                    if (professorId != null) {
-                        Professor professor = professorDao.pesquisarPorId(Integer.parseInt(professorId));
-                        disciplina.setProfessor(professor);
-                    }
-
-                    if (idParam == null || idParam.isEmpty()) {
-
-                        dao.incluir(disciplina);
-
-                    } else {
-
-                        disciplina.setId(Integer.parseInt(idParam));
-                        dao.editar(disciplina);
-
-                    }
-
-                    response.sendRedirect("DisciplinaController?acao=listagem");
-                    return;
-
-                } catch (Exception error) {
-
-                    response.sendRedirect("erroDeExcecao.html");
-
-                }
-
-                break;
-
-            case "edicao":
-
-                Disciplina disciplina = dao.pesquisarPorId(Integer.parseInt(idParam));
-
-                request.setAttribute("disciplina", disciplina);
-
-                // necessário para preencher o select
+            case "formularioInclusao":
                 request.setAttribute("professores", professorDao.listar());
-
                 rd = request.getRequestDispatcher("/templates/disciplina/cadastro.jsp");
                 rd.forward(request, response);
-
                 return;
 
-            case "exclusao":
-
+            case "inclusao":
                 try {
-
-                    dao.excluir(Integer.parseInt(idParam));
-
-                    response.sendRedirect("DisciplinaController?acao=listagem.jsp");
+                    dao.incluir(disciplina);
+                    response.sendRedirect("DisciplinaController?acao=listagem");
                     return;
-
                 } catch (Exception error) {
-
                     response.sendRedirect("erroDeExcecao.html");
-
                 }
+                break;
 
+            case "formularioEdicao":
+                Disciplina disciplinaForm = dao.pesquisarPorId(id);
+                request.setAttribute("disciplina", disciplinaForm);
+                request.setAttribute("professores", professorDao.listar());
+                rd = request.getRequestDispatcher("/templates/disciplina/edicao.jsp");
+                rd.forward(request, response);
+                return;
+
+            case "edicao":
+                try {
+                    dao.editar(disciplina);
+                    response.sendRedirect("DisciplinaController?acao=listagem");
+                    return;
+                } catch (Exception error) {
+                    response.sendRedirect("erroDeExcecao.html");
+                }
+                break;
+
+            case "exclusao":
+                try {
+                    dao.excluir(id);
+                    response.sendRedirect("DisciplinaController?acao=listagem");
+                    return;
+                } catch (Exception error) {
+                    response.sendRedirect("erroDeExcecao.html");
+                }
                 break;
 
             case "listagem":
-
                 List<Disciplina> lista = dao.listar();
-
                 request.setAttribute("disciplinas", lista);
-
                 rd = request.getRequestDispatcher("/templates/disciplina/listagem.jsp");
                 rd.forward(request, response);
-
-                break;
-                
-                
-            case "listar-cadastro":
-                
-                
                 break;
 
         }

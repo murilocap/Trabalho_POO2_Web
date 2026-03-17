@@ -1,7 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Aluno"%>
-
 <!DOCTYPE html>
 <%
     List<Aluno> alunos = (List<Aluno>) request.getAttribute("alunos");
@@ -14,6 +13,7 @@
 
         <link rel="stylesheet" href="/Trabalho_POO2_Web/style/global.css">
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+        <script src="/Trabalho_POO2_Web/js/exclusao.js"></script>
     </head>
     <body>
 
@@ -65,7 +65,7 @@
         <main>
             <div>
                 <h2 class="page-title">Alunos</h2>
-                <a href="/Trabalho_POO2_Web/templates/aluno/cadastro.jsp" class="action-button">
+                <a href="AlunoController?acao=formularioInclusao" class="action-button">
                     <span class="material-symbols-outlined">add</span>
                     Cadastrar
                 </a>
@@ -94,14 +94,14 @@
                             </td>
                             <td>
                                 <span>
-                                    <a href="AlunoController?acao=edicao&id=<%= a.getId()%>" class="default-button">
+                                    <a href="AlunoController?acao=formularioEdicao&id=<%= a.getId()%>" class="default-button">
                                         <span class="material-symbols-outlined">edit</span>
                                         Editar
                                     </a>
-                                    <a href="AlunoController?acao=exclusao&id=<%= a.getId()%>" class="delete-button">
+                                    <button type="button" onclick="confirmarExclusao('AlunoController?acao=exclusao&id=<%= a.getId()%>')" class="delete-button">
                                         <span class="material-symbols-outlined">delete</span>
                                         Excluir
-                                    </a>
+                                    </button>
                                 </span>
                             </td>
                         </tr>

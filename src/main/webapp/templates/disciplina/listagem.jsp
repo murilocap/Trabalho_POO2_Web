@@ -1,13 +1,11 @@
-<%@page import="model.Disciplina"%>
-<%@page import="model.Professor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
-
+<%@page import="model.Disciplina"%>
+<%@page import="model.Professor"%>
 <!DOCTYPE html>
 <%
     List<Disciplina> disciplinas = (List<Disciplina>) request.getAttribute("disciplinas");
 %>
-
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
@@ -16,6 +14,7 @@
 
         <link rel="stylesheet" href="/Trabalho_POO2_Web/style/global.css">
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+        <script src="/Trabalho_POO2_Web/js/exclusao.js"></script>
     </head>
     <body>
 
@@ -97,14 +96,14 @@
                             </td>
                             <td>
                                 <span>
-                                    <a href="DisciplinaController?acao=edicao&id=<%= d.getId()%>" class="default-button">
+                                    <a href="DisciplinaController?acao=formularioEdicao&id=<%= d.getId()%>" class="default-button">
                                         <span class="material-symbols-outlined">edit</span>
                                         Editar
                                     </a>
-                                    <a href="DisciplinaController?acao=exclusao&id=<%= d.getId()%>" class="delete-button">
+                                    <button type="button" onclick="confirmarExclusao('DisciplinaController?acao=exclusao&id=<%= d.getId()%>')" class="delete-button">
                                         <span class="material-symbols-outlined">delete</span>
                                         Excluir
-                                    </a>
+                                    </button>
                                 </span>
                             </td>
                         </tr>

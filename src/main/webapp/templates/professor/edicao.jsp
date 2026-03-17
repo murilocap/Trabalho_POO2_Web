@@ -1,6 +1,9 @@
-<%@page import="model.Professor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.Professor"%>
 <!DOCTYPE html>
+<%
+    Professor professor = (Professor) request.getAttribute("professor");
+%>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -62,8 +65,8 @@
         </div>
 
         <form action="/Trabalho_POO2_Web/ProfessorController" method="post" class="register">
-            
-            <input type="hidden" name="acao" value="inclusao">
+
+            <input type="hidden" name="acao" value="edicao">
             <input type="hidden" name="id" value="<%= professor.getId()%>">
 
             <fieldset>
@@ -105,7 +108,7 @@
                     Salvar
                 </button>
 
-                <a class="cancel-button" href="/Trabalho_POO2_Web/templates/professor/listagem.jsp">
+                <a class="cancel-button" href="/Trabalho_POO2_Web/ProfessorController?acao=listagem">
                     <span class="material-symbols-outlined">chevron_left</span>
                     Cancelar
                 </a>

@@ -1,7 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,7 +84,7 @@
                     <span class="material-symbols-outlined">check_small</span>
                     Salvar
                 </button>
-                <a class="cancel-button" href="/Trabalho_POO2_Web/templates/professor/listagem.jsp">
+                <a class="cancel-button" href="/Trabalho_POO2_Web/ProfessorController?acao=listagem">
                     <span class="material-symbols-outlined">chevron_left</span>
                     Cancelar
                 </a>

@@ -1,6 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Professor"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <%
@@ -67,6 +67,15 @@
             <form action="/Trabalho_POO2_Web/DisciplinaController" method="post" class="register">
                 <input type="hidden" name="acao" value="inclusao">
                 <fieldset>
+                    <label for="nome">
+                        <span class="material-symbols-outlined">menu_book</span>
+                        <span>Nome da Disciplina</span>
+                    </label>
+                    <div class="input">
+                        <input type="text" name="nome" id="nome">
+                    </div>
+                </fieldset>
+                <fieldset>
                     <label for="professor">
                         <span class="material-symbols-outlined">person_apron</span>
                         <span>Professor da Disciplina</span>
@@ -84,20 +93,11 @@
                     </div>
                 </fieldset>
                 <fieldset>
-                    <label for="nome">
-                        <span class="material-symbols-outlined">menu_book</span>
-                        <span>Nome da Disciplina</span>
-                    </label>
-                    <div class="input">
-                        <input type="text" name="nome" id="nome">
-                    </div>
-                </fieldset>
-                <fieldset>
                     <button class="action-button" type="submit">
                         <span class="material-symbols-outlined">check_small</span>
                         Salvar
                     </button>
-                    <a class="cancel-button" href="/Trabalho_POO2_Web/templates/disciplina/listagem.jsp">
+                    <a class="cancel-button" href="/Trabalho_POO2_Web/DisciplinaController?acao=listagem">
                         <span class="material-symbols-outlined">chevron_left</span>
                         Cancelar
                     </a>

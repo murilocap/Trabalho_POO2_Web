@@ -1,9 +1,8 @@
-<%@page import="java.util.List"%>
-<%@page import="model.Aluno"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.Aluno"%>
 <!DOCTYPE html>
 <%
-     Aluno aluno = (Aluno)  request.getAttribute("aluno");
+    Aluno aluno = (Aluno)  request.getAttribute("aluno");
 %>
 <html lang="pt-br">
 <head>
@@ -66,7 +65,7 @@
         </div>
         <form action="/Trabalho_POO2_Web/AlunoController" method="post" class="register">
 
-            <input type="hidden" name="acao" value="inclusao">
+            <input type="hidden" name="acao" value="edicao">
             <input type="hidden" name="id" value="<%= aluno.getId()%>">
 
             <fieldset>
@@ -92,7 +91,7 @@
                     <span class="material-symbols-outlined">check_small</span>
                     Salvar
                 </button>
-                <a class="cancel-button" href="/Trabalho_POO2_Web/templates/aluno/listagem.jsp">
+                <a class="cancel-button" href="/Trabalho_POO2_Web/AlunoController?acao=listagem">
                     <span class="material-symbols-outlined">chevron_left</span>
                     Cancelar
                 </a>

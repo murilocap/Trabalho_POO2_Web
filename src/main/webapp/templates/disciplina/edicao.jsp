@@ -1,10 +1,10 @@
-<%@page import="java.util.List"%>
-<%@page import="model.Professor"%>
-<%@page import="model.Disciplina"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="model.Disciplina"%>
+<%@page import="model.Professor"%>
 <%
-    List<Professor> professores = (List<Professor>) request.getAttribute("professores");
     Disciplina disciplina = (Disciplina) request.getAttribute("disciplina");
+    List<Professor> professores = (List<Professor>) request.getAttribute("professores");
 %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -69,39 +69,14 @@
 
         <form action="/Trabalho_POO2_Web/DisciplinaController" method="post" class="register">
 
-            <input type="hidden" name="acao" value="inclusao">
+            <input type="hidden" name="acao" value="edicao">
             <input type="hidden" name="id" value="<%= disciplina.getId()%>">
-
-            <fieldset>
-                <label for="professor">
-                    <span class="material-symbols-outlined">person_apron</span>
-                    <span>Professor da Disciplina</span>
-                </label>
-
-                <div class="input">
-                    <select name="professorId" id="professor">
-
-                        <% for (Professor p : professores) { %>
-
-                        <option 
-                            value="<%= p.getId()%>"
-                            <%= p.getId() == disciplina.getProfessor().getId() ? "selected" : "" %>
-                        >
-                            <%= p.getNome()%>
-                        </option>
-
-                        <% } %>
-
-                    </select>
-                </div>
-            </fieldset>
 
             <fieldset>
                 <label for="nome">
                     <span class="material-symbols-outlined">menu_book</span>
                     <span>Nome da Disciplina</span>
                 </label>
-
                 <div class="input">
                     <input 
                         type="text"
@@ -111,14 +86,31 @@
                     >
                 </div>
             </fieldset>
-
+            <fieldset>
+                <label for="professor">
+                    <span class="material-symbols-outlined">person_apron</span>
+                    <span>Professor da Disciplina</span>
+                </label>
+                <div class="input">
+                    <select name="professorId" id="professor">
+                        <% for (Professor p : professores) { %>
+                            <option 
+                                value="<%= p.getId()%>"
+                                <%= p.getId() == disciplina.getProfessor().getId() ? "selected" : "" %>
+                            >
+                                <%= p.getNome()%>
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
+            </fieldset>
             <fieldset>
                 <button class="action-button" type="submit">
                     <span class="material-symbols-outlined">check_small</span>
                     Salvar
                 </button>
 
-                <a class="cancel-button" href="/Trabalho_POO2_Web/templates/disciplina/listagem.jsp">
+                <a class="cancel-button" href="/Trabalho_POO2_Web/DisciplinaController?acao=listagem">
                     <span class="material-symbols-outlined">chevron_left</span>
                     Cancelar
                 </a>
