@@ -1,11 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="model.Professor"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="pt-br">
-<%
-    List<Professor> professores = (List<Professor>) request.getAttribute("professores");
-%>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,11 +74,11 @@
                     <div class="input">
                         <select name="professorId" id="professor">
 
-                            <% for (Professor p : professores) {%>
-                            <option value="<%= p.getId()%>">
-                                <%= p.getNome()%>
+                            <c:forEach var="professor" items="${professores}">
+                            <option value="${professor.id}">
+                                ${professor.nome}
                             </option>
-                            <% }%>
+                            </c:forEach>
 
                         </select>
                     </div>

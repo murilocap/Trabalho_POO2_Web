@@ -1,10 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="model.Aluno"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<%
-    List<Aluno> alunos = (List<Aluno>) request.getAttribute("alunos");
-%>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
@@ -73,33 +69,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (Aluno a : alunos) {%>
+                    <c:forEach var="aluno" items="${alunos}">
+                        
                         <tr>
                             <td>
                                 <span>
                                     <span class="material-symbols-outlined">person_edit</span>
-                                    <%= a.getNome()%>
+                                    ${aluno.nome}
                                 </span>
                             </td>
                             <td>
                                 <span>
-                                    <%= a.getMatricula()%>
+                                    ${aluno.matricula}
                                 </span>
                             </td>
                             <td>
                                 <span>
-                                    <a href="AlunoController?acao=formularioEdicao&id=<%= a.getId()%>" class="default-button">
+                                    <a href="AlunoController?acao=formularioEdicao&id=${aluno.id}" class="default-button">
                                         <span class="material-symbols-outlined">edit</span>
                                         Editar
                                     </a>
-                                    <button type="button" onclick="confirmarExclusao('AlunoController?acao=exclusao&id=<%= a.getId()%>')" class="delete-button">
+                                    <button type="button" onclick="confirmarExclusao('AlunoController?acao=exclusao&id=${aluno.id}')" class="delete-button">
                                         <span class="material-symbols-outlined">delete</span>
                                         Excluir
                                     </button>
                                 </span>
                             </td>
                         </tr>
-                    <% }%>
+                        </c:forEach>
                 </tbody>
             </table>
         </main>

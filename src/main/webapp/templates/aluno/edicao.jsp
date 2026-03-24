@@ -1,9 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.Aluno"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<%
-    Aluno aluno = (Aluno)  request.getAttribute("aluno");
-%>
+
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -60,7 +58,7 @@
         <form action="/Trabalho_POO2_Web/AlunoController" method="post" class="register">
 
             <input type="hidden" name="acao" value="edicao">
-            <input type="hidden" name="id" value="<%= aluno.getId()%>">
+            <input type="hidden" name="id" value="${aluno.id}">
 
             <fieldset>
                 <label for="matricula">
@@ -68,7 +66,7 @@
                     <span>Matrícula</span>
                 </label>
                 <div class="input">
-                    <input type="text" name="matricula" id="matricula" value="<%= aluno.getMatricula()%>">
+                    <input type="text" name="matricula" id="matricula" value="${aluno.matricula}">
                 </div>
             </fieldset>
             <fieldset>
@@ -77,7 +75,7 @@
                     <span>Nome</span>
                 </label>
                 <div class="input">
-                    <input type="text" name="nome" id="nome" value="<%= aluno.getNome()%>">
+                    <input type="text" name="nome" id="nome" value="${aluno.nome}">
                 </div>
             </fieldset>
             <fieldset>

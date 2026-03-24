@@ -1,11 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="model.Disciplina"%>
-<%@page import="model.Professor"%>
-<%
-    Disciplina disciplina = (Disciplina) request.getAttribute("disciplina");
-    List<Professor> professores = (List<Professor>) request.getAttribute("professores");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -64,7 +58,7 @@
         <form action="/Trabalho_POO2_Web/DisciplinaController" method="post" class="register">
 
             <input type="hidden" name="acao" value="edicao">
-            <input type="hidden" name="id" value="<%= disciplina.getId()%>">
+            <input type="hidden" name="id" value="${disciplina.id}">
 
             <fieldset>
                 <label for="nome">
@@ -76,7 +70,7 @@
                         type="text"
                         name="nome"
                         id="nome"
-                        value="<%= disciplina.getNome()%>"
+                        value="${disciplina.nome}"
                     >
                 </div>
             </fieldset>
@@ -87,14 +81,14 @@
                 </label>
                 <div class="input">
                     <select name="professorId" id="professor">
-                        <% for (Professor p : professores) { %>
+                        <c:forEach var="professor" items="${professores}">
                             <option 
-                                value="<%= p.getId()%>"
-                                <%= p.getId() == disciplina.getProfessor().getId() ? "selected" : "" %>
+                                value="${professor.id}"
+                                 "${professor.id}" == "${disciplina.professor.id}" ? "selected" : ""
                             >
-                                <%= p.getNome()%>
+                                ${professor.nome}
                             </option>
-                        <% } %>
+                        </c:forEach>
                     </select>
                 </div>
             </fieldset>

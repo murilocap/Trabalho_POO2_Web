@@ -1,10 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="model.Professor"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<%
-    List<Professor> professores = (List<Professor>) request.getAttribute("professores");
-%>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -74,33 +70,33 @@
                 </tr>
             </thead>
             <tbody>
-                <% for (Professor p : professores) {%>
+                <c:forEach var="professor" items="${professores}">
                     <tr>
                         <td>
                             <span>
                                 <span class="material-symbols-outlined">person_apron</span>
-                                <%= p.getNome()%>
+                                ${professor.nome}
                             </span>
                         </td>
                         <td>
                             <span>
-                                <%= p.getMatricula()%>
+                                ${professor.matricula}
                             </span>
                         </td>
                         <td>
                             <span>
-                                <a href="ProfessorController?acao=formularioEdicao&id=<%= p.getId()%>" class="default-button">
+                                <a href="ProfessorController?acao=formularioEdicao&id=${professor.id}" class="default-button">
                                     <span class="material-symbols-outlined">edit</span>
                                     Editar
                                 </a>
-                                <button type="button" onclick="confirmarExclusao('ProfessorController?acao=exclusao&id=<%= p.getId()%>')" class="delete-button">
+                                <button type="button" onclick="confirmarExclusao('ProfessorController?acao=exclusao&id=${professor.id}')" class="delete-button">
                                     <span class="material-symbols-outlined">delete</span>
                                     Excluir
                                 </button>
                             </span>
                         </td>
                     </tr>
-                <% }%>
+                </c:forEach>
             </tbody>
         </table>
     </main>

@@ -1,9 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.Professor"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<%
-    Professor professor = (Professor) request.getAttribute("professor");
-%>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -62,7 +59,7 @@
         <form action="/Trabalho_POO2_Web/ProfessorController" method="post" class="register">
 
             <input type="hidden" name="acao" value="edicao">
-            <input type="hidden" name="id" value="<%= professor.getId()%>">
+            <input type="hidden" name="id" value="${professor.id}">
 
             <fieldset>
                 <label for="matricula">
@@ -75,7 +72,7 @@
                         type="text" 
                         name="matricula" 
                         id="matricula"
-                        value="<%= professor.getMatricula()%>"  
+                        value="${professor.matricula}"  
                     >
                 </div>
             </fieldset>
@@ -91,7 +88,7 @@
                         type="text" 
                         name="nome" 
                         id="nome"
-                        value="<%= professor.getNome()%>"
+                        value="${professor.nome}"
                     >
                 </div>
             </fieldset>

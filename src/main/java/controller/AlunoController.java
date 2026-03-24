@@ -79,7 +79,7 @@ public class AlunoController extends HttpServlet {
                     return;
                 } catch (Exception error) {
                     response.sendRedirect("erroDeExcecao.html");
-                }
+                }   
                 break;
 
             case "listagem":

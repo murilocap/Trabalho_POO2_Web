@@ -1,11 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="model.Disciplina"%>
-<%@page import="model.Professor"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<%
-    List<Disciplina> disciplinas = (List<Disciplina>) request.getAttribute("disciplinas");
-%>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
@@ -76,33 +71,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (Disciplina d : disciplinas) {%>
+                    <c:forEach var="disciplina" items="${disciplinas}">
                         <tr>
                             <td>
                                 <span>
                                     <span class="material-symbols-outlined">menu_book</span>
-                                    <%= d.getNome()%>
+                                    ${disciplina.nome}
                                 </span>
                             </td>
                             <td>
                                 <span>
-                                    <%= d.getProfessor().getNome()%>
+                                    ${disciplina.professor.nome}
                                 </span>
                             </td>
                             <td>
                                 <span>
-                                    <a href="DisciplinaController?acao=formularioEdicao&id=<%= d.getId()%>" class="default-button">
+                                    <a href="DisciplinaController?acao=formularioEdicao&id=${disciplina.id}" class="default-button">
                                         <span class="material-symbols-outlined">edit</span>
                                         Editar
                                     </a>
-                                    <button type="button" onclick="confirmarExclusao('DisciplinaController?acao=exclusao&id=<%= d.getId()%>')" class="delete-button">
+                                    <button type="button" onclick="confirmarExclusao('DisciplinaController?acao=exclusao&id=${disciplina.id}')" class="delete-button">
                                         <span class="material-symbols-outlined">delete</span>
                                         Excluir
                                     </button>
                                 </span>
                             </td>
                         </tr>
-                    <% }%>
+                    </c:forEach>
                 </tbody>
             </table>
         </main>
