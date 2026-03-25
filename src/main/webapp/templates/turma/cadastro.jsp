@@ -1,11 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="model.Disciplina"%>
-<%@page import="model.Aluno"%>
-<%
-    List<Aluno> alunos = (List<Aluno>) request.getAttribute("alunos");
-    List<Disciplina> disciplinas = (List<Disciplina>) request.getAttribute("disciplinas");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -81,19 +75,19 @@
                 </label>
                 <div class="input" style="display: flex; flex-direction: column; gap: 10px;">
 
-                <% for (Disciplina d : disciplinas) { %>
+                    <c:forEach var="disciplina" items="${disciplinas}">
 
                 <label style="display:block">
 
                 <input type="checkbox"
                     name="disciplinasId"
-                    value="<%= d.getId() %>">
+                    value="${disciplina.id}">
 
-                <%= d.getNome() %> - <%= d.getProfessor().getNome() %>
+                ${disciplina.nome} - ${disciplina.professor.nome}
 
                 </label>
 
-                <% } %>
+                </c:forEach>
 
                 </div>
             </fieldset>
@@ -103,17 +97,17 @@
                 <span>Alunos</span>
             </label>
             <div class="input" style="display: flex; flex-direction: column; gap: 10px;">
-            <% for (Aluno a : alunos) { %>
+                <c:forEach var="aluno" items="${alunos}">
             <label style="display:block">
             <input type="checkbox"
                 name="alunosId"
-                value="<%= a.getId() %>">
+                value="${aluno.id}">
 
-            <%= a.getNome() %> - <%= a.getMatricula() %>
+            ${aluno.nome} - ${aluno.matricula}
 
             </label>
 
-            <% } %>
+                </c:forEach>
 
             </div>
 

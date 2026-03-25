@@ -1,12 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="model.Disciplina"%>
-<%@page import="model.Turma"%>
-<%@page import="model.Aluno"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<%
-    List<Turma> turmas = (List<Turma>) request.getAttribute("turmas");
-%>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -68,7 +62,7 @@
             </a>
         </div>
         <ul class="main-list">
-            <% for (Turma t : turmas) { %>
+            <c:forEach var="turma" items="${turmas}">
                 <li class="list-item" style="flex-direction: column; align-items: flex-start;">
                     <div>
                         <!-- ICON -->
@@ -77,16 +71,16 @@
                         </div>
                         <!-- NAME -->
                         <div>
-                            <span><%= t.getCod_turma()%></span>
+                            <span>${turma.cod_turma}</span>
                         </div>
                         <!-- ACTIONS -->
                         <div style="margin-left: 40px;">
                             <span>
-                                <a href="TurmaController?acao=formularioEdicao&id=<%= t.getId()%>" class="default-button">
+                                <a href="TurmaController?acao=formularioEdicao&id=${turma.id}" class="default-button">
                                     <span class="material-symbols-outlined">edit</span>
                                     Editar
                                 </a>
-                                <button type="button" onclick="confirmarExclusao('TurmaController?acao=exclusao&id=<%= t.getId()%>')" class="delete-button">
+                                <button type="button" onclick="confirmarExclusao('TurmaController?acao=exclusao&id=${turma.id}')" class="delete-button">
                                     <span class="material-symbols-outlined">delete</span>
                                     Excluir
                                 </button>
@@ -97,56 +91,56 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Nome</th>
+                                <th>Disciplina</th>
                                 <th>Professor</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% for (Disciplina d : t.getDisciplinas()) {%>
+                            <c:forEach var="disciplina" items="${turma.disciplinas}">
                                 <tr>
                                     <td>
                                         <span>
                                             <span class="material-symbols-outlined">menu_book</span>
-                                            <%= d.getNome()%>
+                                            ${disciplina.nome}
                                         </span>
                                     </td>
                                     <td>
                                         <span>
-                                            <%= d.getProfessor().getNome()%>
+                                            ${disciplina.professor.nome}
                                         </span>
                                     </td>
                                 </tr>
-                            <% }%>
+                            </c:forEach>
                         </tbody>
                     </table>
                     <!-- ALUNOS -->
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Nome</th>
+                                <th>Alunos</th>
                                 <th>Matrícula</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% for (Aluno a : t.getAlunos()) {%>
+                            <c:forEach var="aluno" items="${turma.alunos}">
                                 <tr>
                                     <td>
                                         <span>
                                             <span class="material-symbols-outlined">person_edit</span>
-                                            <%= a.getNome()%>
+                                            ${aluno.nome}
                                         </span>
                                     </td>
                                     <td>
                                         <span>
-                                            <%= a.getMatricula()%>
+                                            ${aluno.matricula}
                                         </span>
                                     </td>
                                 </tr>
-                            <% }%>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </li>
-            <% }%>
+            </c:forEach>
         </ul>
     </main>
 
