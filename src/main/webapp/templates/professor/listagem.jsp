@@ -49,7 +49,7 @@
         </nav>
 
         <span class="iff-logo">
-            <img src="../../../images/logo-iff.png" alt="Logo Instituto Federal Fluminense">
+            <img src="/Trabalho_POO2_Web/images/logo-iff.png" alt="Logo Instituto Federal Fluminense">
         </span>
     </header>
 
